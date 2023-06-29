@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BooleanInput } from 'ng-zorro-antd/core/types';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sinomach-admin';
+isCollapsed: BooleanInput;
+
 }
