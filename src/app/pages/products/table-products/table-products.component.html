@@ -1,0 +1,28 @@
+
+    <nz-table #fixedTable [nzData]="listOfData" [nzScroll]="{ x: '1150px', y: '240px' }">
+      <thead>
+        <tr>
+          <th nzLeft>ProductName</th>
+          <th nzLeft>SubType</th>
+          <th>FullDescription</th>
+          <th>ShortSpecification</th>
+          <th>AdditionalDescription</th>
+          <th>Image</th>
+          <th nzRight>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of fixedTable.data">
+          <td nzLeft>{{ data.name }}</td>
+          <td nzLeft>{{ data.age }}</td>
+          <td>{{ data.address }}</td>
+          <td>{{ data.address }}</td>
+          <td>{{ data.address }}</td>
+          <td>{{ data.address }}</td>
+          <td nzRight>
+            <a>action</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  

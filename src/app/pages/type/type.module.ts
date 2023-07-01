@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { TypeRoutingModule } from './type-routing.module';
 
 import { TypeComponent } from './type.component';
-import { TableComponent } from './table/table.component';
+import { TableComponent } from './table-type/table-type.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { CommonModule } from '@angular/common';
 
