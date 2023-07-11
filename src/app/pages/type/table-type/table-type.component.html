@@ -1,16 +1,23 @@
-<nz-table #fixedTable [nzData]="listOfData" [nzScroll]="{ x: '1150px', y: '240px' }">
+<nz-table #fixedTable [nzData]="dataType" 
+[nzBordered]="true"
+[nzVirtualItemSize]="30"
+[nzFrontPagination]="false"
+[nzShowPagination]="false"
+[nzScroll]="{ x: '1200px', y: '940px' }">
     <thead>
       <tr>
-        <th nzLeft>Type</th>
+        <th nzLeft> Type</th>
         <th nzRight>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of fixedTable.data">
+      <tr *ngFor="let data of dataType">
         <td nzLeft>{{ data.name }}</td>
         <td nzRight>
           <a>action</a>
-        </td>
+                  </td>
       </tr>
     </tbody>
   </nz-table>
+
+ 

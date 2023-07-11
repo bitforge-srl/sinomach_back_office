@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NzTableComponent } from 'ng-zorro-antd/table';
+import { RestService } from 'src/app/service/rest.service';
 
 @Component({
   selector: 'app-table-subtype',
@@ -6,21 +8,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-subtype.component.css']
 })
 export class TableSubTypeComponent implements OnInit{
-  listOfData: ItemData[] = [];
 
+  @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<VirtualDataInterface>;
+  listOfData: VirtualDataInterface[] = [];
+  
+  constructor(private service: RestService) { }
+
+  dataSubType:ItemType[] = [];
+  dataTypeAndSubType:ItemTypeAndSubType[]=[];
+ 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.listOfData.push({
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London`
-      });
-    }
+        
+     this.service.getDataTypes().subscribe(subType=> {
+       this.dataSubType = subType;
+
+        this.dataSubType.forEach(data=>{
+          data.subTypes.forEach(          
+            itemSubType=>{
+            this.dataTypeAndSubType.push({nameSubType:itemSubType.name, nameParentType:data.name})
+          })
+        })
+     });
   }
 
 }
-interface ItemData {
+
+
+interface ItemType {
   name: string;
-  age: number;
-  address: string;
+  subTypes:ItemSubType[];
+}
+
+interface ItemSubType {
+  name: string;
+  products:[]; 
+}
+
+interface ItemTypeAndSubType{
+  nameSubType: string;
+  nameParentType: string;
+}
+
+export interface VirtualDataInterface {
 }

@@ -1,24 +1,25 @@
 
-    <nz-table #fixedTable [nzData]="listOfData" [nzScroll]="{ x: '1150px', y: '240px' }">
+<nz-table #fixedTable [nzData]="dataOfProducts" 
+      [nzBordered]="true"
+      [nzVirtualItemSize]="30"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: '740px' }">
       <thead>
         <tr>
-          <th nzLeft>ProductName</th>
-          <th nzLeft>SubType</th>
-          <th>FullDescription</th>
-          <th>ShortSpecification</th>
-          <th>AdditionalDescription</th>
-          <th>Image</th>
-          <th nzRight>Action</th>
+          <th >ProductName</th>
+          <th >Type</th>
+          <th >SubType</th>
+          <th >Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of fixedTable.data">
-          <td nzLeft>{{ data.name }}</td>
-          <td nzLeft>{{ data.age }}</td>
-          <td>{{ data.address }}</td>
-          <td>{{ data.address }}</td>
-          <td>{{ data.address }}</td>
-          <td>{{ data.address }}</td>
+        <tr *ngFor="let data of dataOfProducts">
+          <td nzLeft>{{data.name}}</td>
+          <td nzLeft >{{data.type}}</td>
+          <td nzLeft >{{data.subType}}</td>
+
+
           <td nzRight>
             <a>action</a>
           </td>

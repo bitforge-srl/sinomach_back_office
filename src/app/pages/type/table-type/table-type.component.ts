@@ -1,4 +1,6 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component ,OnInit, ViewChild } from '@angular/core';
+import { NzTableComponent } from 'ng-zorro-antd/table';
+import { RestService } from 'src/app/service/rest.service';
 
 @Component({
   selector: 'app-table-type',
@@ -7,24 +9,34 @@ import { Component ,OnInit } from '@angular/core';
 })
 export class TableComponent  implements OnInit{
 
- listOfData: ItemData[] = [];
+  @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<VirtualDataInterface>;
+  listOfData: VirtualDataInterface[] = [];
 
-  ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      let row  ={
-        name: `Edward King ${i}`,
-        age: 32,
-        address: `London`
-      };
-      this.listOfData.push(row);
-      console.log(row);
-    }
+constructor(private service: RestService) { }
+
+ dataType:ItemType[] = [];
+
+ ngOnInit(): void {
+       
+    this.service.getDataTypes().subscribe(type=> {
+      this.dataType = type;
+      console.log(this.dataType);
+    });
+   
    
   }
+
 }
 
-interface ItemData {
+interface ItemType {
   name: string;
-  age: number;
-  address: string;
+  subtypes:ItemSubType[];
+}
+
+interface ItemSubType {
+  name: string;
+  products:[]; 
+}
+
+export interface VirtualDataInterface {
 }
