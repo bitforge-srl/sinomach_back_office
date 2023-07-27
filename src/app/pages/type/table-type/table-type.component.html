@@ -1,23 +1,25 @@
-<nz-table #fixedTable [nzData]="dataType" 
+<nz-table #fixedTable [nzData]="dataType"  
+cdkDropList (cdkDropListDropped)="onDrop($event)"
 [nzBordered]="true"
-[nzVirtualItemSize]="30"
+[nzVirtualItemSize]="35"
 [nzFrontPagination]="false"
 [nzShowPagination]="false"
-[nzScroll]="{ x: '1200px', y: '940px' }">
+[nzScroll]="{ x: '1200px', y: '650px' }">
     <thead>
       <tr>
         <th nzLeft> Type</th>
-        <th nzRight>Action</th>
+        <th nzRight nzWidth="300px">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataType">
+      <tr *ngFor="let data of dataType" cdkDrag>
         <td nzLeft>{{ data.name }}</td>
         <td nzRight>
-          <a>action</a>
-                  </td>
+          <app-editType [typeId]="data.id"></app-editType>
+          <app-removeType [typeId]="data.id"></app-removeType>
+        </td>
       </tr>
     </tbody>
   </nz-table>
-
+ 
  
