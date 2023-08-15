@@ -1,0 +1,13 @@
+  
+<button nz-button nzType="primary" class="editButton" (click)="showModal()">
+  <span nz-icon nzType="edit" nzTheme="outline"></span>
+</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Type" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <input [(ngModel)]="editedNameType" [placeholder]="data?.name" class="editType" >
+    <input [(ngModel)]="editedDescriptionType" [placeholder]="data?.shortDescription" class="editType" >
+    <input [(ngModel)]="editedSrcBannerType" [placeholder]="data?.imgBanner" class="editType" >
+    <input [(ngModel)]="editedSrcImgType" [placeholder]="data?.img" class="editType" >
+
+  </ng-container>
+</nz-modal>

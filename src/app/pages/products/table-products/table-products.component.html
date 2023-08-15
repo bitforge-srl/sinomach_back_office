@@ -1,26 +1,27 @@
 
 <nz-table #fixedTable [nzData]="dataOfProducts" 
       [nzBordered]="true"
-      [nzVirtualItemSize]="30"
-      [nzFrontPagination]="false"
-      [nzShowPagination]="false"
-      [nzScroll]="{ x: '1200px', y: '740px' }">
+      [nzVirtualItemSize]="45"
+      [nzTotal]="15"
+      [nzFrontPagination]="true"
+      [nzShowPagination]="true"
+      [nzScroll]="{ x: '1200px', y: '650px' }">
       <thead>
         <tr>
-          <th >ProductName</th>
-          <th >Type</th>
-          <th >SubType</th>
-          <th >Action</th>
+          <th nzLeft nzWidth="30%">ProductName</th>
+          <th nzWidth="30%">Type</th>
+          <th nzWidth="20%">SubType</th>
+          <th nzRight nzWidth="20%">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of dataOfProducts">
-          <td nzLeft>{{data.name}}</td>
-          <td nzLeft >{{data.type}}</td>
-          <td nzLeft >{{data.subType}}</td>
+          <td >{{data.name}}</td>
+          <td  >{{data.type}}</td>
+          <td  >{{data.subType}}</td>
 
 
-          <td nzRight>
+          <td >
             <a>action</a>
           </td>
         </tr>

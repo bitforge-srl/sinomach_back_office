@@ -1,14 +1,14 @@
 <nz-table #fixedTable [nzData]="dataTypeAndSubType" 
       [nzBordered]="true"
-      [nzVirtualItemSize]="30"
+      [nzVirtualItemSize]="35"
       [nzFrontPagination]="false"
       [nzShowPagination]="false"
-      [nzScroll]="{ x: '1200px', y: '940px' }">
+      [nzScroll]="{ x: '1200px', y: '720px' }">
     <thead>
       <tr>
-        <th nzLeft>ParentType</th>
-        <th nzLeft>SubType</th>
-        <th nzRight>Action</th>
+        <th nzLeft nzWidth="50%">ParentType</th>
+        <th nzLeft nzWidth="30%">SubType</th>
+        <th nzRight nzWidth="20%">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,8 @@
         <td nzLeft>{{data.nameParentType}}</td>
         <td nzLeft>{{data.nameSubType}}</td>
         <td nzRight>
-          <a>action</a>
+          <app-editSubType></app-editSubType>
+          <app-removeSubType></app-removeSubType>
         </td>
       </tr>
     </tbody>

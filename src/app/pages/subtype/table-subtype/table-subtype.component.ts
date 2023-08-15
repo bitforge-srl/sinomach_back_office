@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzTableComponent } from 'ng-zorro-antd/table';
 import { RestService } from 'src/app/service/rest.service';
 
+
 @Component({
   selector: 'app-table-subtype',
   templateUrl: './table-subtype.component.html',

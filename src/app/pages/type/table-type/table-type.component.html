@@ -13,9 +13,9 @@ cdkDropList (cdkDropListDropped)="onDrop($event)"
     </thead>
     <tbody>
       <tr *ngFor="let data of dataType" cdkDrag>
-        <td nzLeft>{{ data.name }}</td>
+        <td nzLeft> {{ data.name }}</td>
         <td nzRight>
-          <app-editType [typeId]="data.id"></app-editType>
+          <app-editType [data]="data"></app-editType>
           <app-removeType [typeId]="data.id"></app-removeType>
         </td>
       </tr>

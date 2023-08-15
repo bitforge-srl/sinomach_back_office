@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TableProductsComponent } from './table-products/table-products.component';
 
 @Component({
   selector: 'app-products',

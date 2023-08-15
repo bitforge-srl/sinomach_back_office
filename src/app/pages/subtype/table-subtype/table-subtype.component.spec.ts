@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table-subtype.component';
+import { TableSubTypeComponent } from './table-subtype.component';
 
 describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+  let component: TableSubTypeComponent;
+  let fixture: ComponentFixture<TableSubTypeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TableComponent]
+      declarations: [TableSubTypeComponent]
     });
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(TableSubTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

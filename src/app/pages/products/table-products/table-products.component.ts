@@ -9,9 +9,8 @@ import { RestService } from 'src/app/service/rest.service';
 })
 export class TableProductsComponent implements OnInit {
 
-  @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<VirtualDataInterface>;
+  @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<ItemType>;
   private destroy$ = new Subject<boolean>();
-  listOfData: VirtualDataInterface[] = [];
  
    constructor(private service: RestService) { }
   
@@ -41,13 +40,6 @@ export class TableProductsComponent implements OnInit {
   
 }
   
-export interface VirtualDataInterface {
-  index: number;
-  name: string;
-  age: number;
-  address: string;
-}
-
   interface ItemType {
     name: string;
     subTypes:ItemSubType[];

@@ -1,0 +1,41 @@
+
+    <button nz-button nzType="primary" (click)="open()" class="addButton">+</button>
+    <nz-drawer
+      [nzBodyStyle]="{ overflow: 'auto' }"
+      [nzMaskClosable]="false"
+      [nzWidth]="720"
+      [nzVisible]="visible"
+      nzTitle="Create"
+      [nzFooter]="footerTpl"
+      (nzOnClose)="close()" 
+      >
+      <form nz-form *nzDrawerContent>
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>SubType</nz-form-label>
+              <nz-form-control>
+                <input  nz-input  placeholder="please enter new subtype" [(ngModel)]="newSubTypeName"name="newSubTypeName"/>
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label>ParentType</nz-form-label>
+              <nz-form-control>
+                <app-choice-parentType (parentTypeSelected)="onParentTypeSelected($event)"></app-choice-parentType>
+              </nz-form-control>
+            </nz-form-item>
+
+          </div>         
+        </div>              
+      </form>
+
+      <ng-template #footerTpl>
+        <div style="float: right">
+          <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+          <button nz-button nzType="primary" (click)="addSubType()">Submit</button>
+        </div>
+      </ng-template>
+    
+    </nz-drawer>
+  
