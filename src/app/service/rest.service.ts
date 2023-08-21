@@ -60,11 +60,24 @@ export class RestService {
     return this.http.post(templateUrl, newSubType);
   }
 
-
   deleteSubType(subtypeId:number):Observable<any>{
     const templateUrl =  'http://localhost:8080/api/subtype/delete/'+subtypeId;
     return this.http.delete(templateUrl);
   }
+
+  editSubType(subtypeId:number | undefined, editedNameSubType:string, typeId:number | undefined):Observable<any>{
+    const dataSubType = {
+      "subtypeId": subtypeId,
+      "editedNameSubType": editedNameSubType,
+      "typeId": typeId };
+
+      console.log(subtypeId);
+
+console.log("service editSubtype");
+    const templateUrl =  'http://localhost:8080/api/subtype/edit';
+    return this.http.post(templateUrl, dataSubType);
+  }
+
  
 }
 

@@ -15,6 +15,7 @@ export class RemoveSubTypeComponent {
   constructor(private service: RestService, private modal: NzModalService) { }
 
   confirmModal?: NzModalRef; // For testing by now
+  @Input() subtypeId:number = 0;
 
   showConfirm(): void {
     this.confirmModal = this.modal.confirm({
@@ -33,12 +34,11 @@ export class RemoveSubTypeComponent {
       }
     });
   }
-   
-  @Input() typeId:number = 0;
+    
  
   removeSubType(){  
-    console.log(this.typeId)
-    this.service.deleteSubType(this.typeId)
+    console.log(this.subtypeId)
+    this.service.deleteSubType(this.subtypeId)
     .subscribe(response=>{
       if(response.success == true){
         console.log(response);

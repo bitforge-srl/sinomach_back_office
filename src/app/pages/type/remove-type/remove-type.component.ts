@@ -14,7 +14,7 @@ export class RemoveComponent {
  
   constructor(private service: RestService, private modal: NzModalService) { }
 
-  confirmModal?: NzModalRef; // For testing by now
+  confirmModal?: NzModalRef; 
 
   showConfirm(): void {
     this.confirmModal = this.modal.confirm({

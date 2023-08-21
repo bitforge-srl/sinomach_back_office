@@ -6,18 +6,22 @@
       [nzScroll]="{ x: '1200px', y: '720px' }">
     <thead>
       <tr>
-        <th nzLeft nzWidth="50%">ParentType</th>
-        <th nzLeft nzWidth="30%">SubType</th>
+        <th nzLeft nzWidth="50%">SubType</th>
+        <th nzLeft nzWidth="30%">ParentType</th>
         <th nzRight nzWidth="20%">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of dataTypeAndSubType">
-        <td nzLeft>{{data.nameParentType}}</td>
         <td nzLeft>{{data.nameSubType}}</td>
+        <td nzLeft>{{data.nameParentType}}</td>      
         <td nzRight>
-          <app-editSubType></app-editSubType>
-          <app-removeSubType></app-removeSubType>
+          <app-editSubType  [subtypeId]="data.subtypeId" 
+                            [typeId]="data.typeId"
+                            [parentType]="data.nameParentType"
+                            [subType]="data.nameSubType"
+                            ></app-editSubType>
+          <app-removeSubType [subtypeId]="data.subtypeId"></app-removeSubType>
         </td>
       </tr>
     </tbody>

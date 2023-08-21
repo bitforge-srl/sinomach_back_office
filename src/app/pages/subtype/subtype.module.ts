@@ -23,6 +23,7 @@ import { EditSubTypeComponent } from './edit-subtype/edit-subtype.component';
 import { RemoveSubTypeComponent } from './remove-subtype/remove-subtype.component';
 import { ChoiceParentTypeComponent } from './add-subtype/choice-parentType/choice-parentType.component';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { ChoiceParentTypeToEditSubTypeComponent } from './edit-subtype/choice-parentTypeToEditSubType/choice-parentTypeToEditSubType.component';
 
 
 
@@ -34,6 +35,7 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
      EditSubTypeComponent, 
      RemoveSubTypeComponent, 
      ChoiceParentTypeComponent,
+     ChoiceParentTypeToEditSubTypeComponent,
     ],
   exports: [SubtypeComponent],
   imports: [SubtypeRoutingModule,
@@ -50,6 +52,7 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
           ReactiveFormsModule,
           NzModalModule,
           NzCascaderModule
+          
 
    ]
 

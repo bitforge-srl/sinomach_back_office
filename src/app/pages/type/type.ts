@@ -9,8 +9,9 @@ export interface ItemType {
   }
   
   export interface ItemSubType {
+    id: number;
     name: string;
-    products: any[]; // Необходимо указать корректный тип для 'products'
+    products: any[];
   }
   
   export interface DragAndDropItem {
@@ -21,5 +22,18 @@ export interface ItemType {
  export interface AllNameType{
     name:string,
     value:string
+    }
+
+  export interface ItemTypeForSubType {
+      id:number,
+      name: string;
+      subTypes:ItemSubType[];
+    }
+
+  export interface ItemTypeAndSubType{
+      subtypeId: number;
+      typeId:number;
+      nameSubType: string;
+      nameParentType: string;
     }
    

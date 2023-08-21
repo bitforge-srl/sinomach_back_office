@@ -4,8 +4,7 @@
 </button>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Edit SubType" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <input [(ngModel)]="editedNameSubType" [placeholder]="" class="editType" >
-    <input [(ngModel)]="editedDescriptionSubType" [placeholder]="" class="editType" >
-
+    <input [(ngModel)]="editedNameSubType" [placeholder]="subType" class="editSubType" >
+    <app-choice-parentTypeToEditSubType [parentType]="parentType" (EditSelectedSubType)="handleEditSelectedSubType($event)"></app-choice-parentTypeToEditSubType>
   </ng-container>
 </nz-modal>
