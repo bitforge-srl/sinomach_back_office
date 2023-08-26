@@ -4,12 +4,12 @@ import { RestService } from 'src/app/service/rest.service';
 
 
 @Component({
-  selector: 'app-choice-parentType',
-  templateUrl: './choice-parentType.component.html',
-  styleUrls: ['./choice-parentType.component.css'],
+  selector: 'app-choice-typeForEditProduct',
+  templateUrl: './choice-typeForEditProductProduct.component.html',
+  styleUrls: ['./choice-typeForEditProductProduct.component.css'],
 })
 
-export class ChoiceParentTypeComponent {
+export class ChoiceTypeForEditProductProductComponent {
 
   @Output() parentTypeSelected = new EventEmitter<ItemType>();
 
@@ -27,10 +27,10 @@ export class ChoiceParentTypeComponent {
   ngOnInit(): void {this.service.getDataTypes().subscribe(type=> {
     this.dataTypeForChoice = type;
 
-    this.dataTypeForChoice.forEach(element => {
+    this.dataTypeForChoice.forEach(type => {
       const nameType:AllNameType={
-        name: element.name,
-        value: element.name,
+        name: type.name,
+        value: type.name,
       }
         this.menuItems.push(nameType);
     });

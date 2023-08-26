@@ -25,10 +25,10 @@ export class TableProductsComponent implements OnInit {
       this.dataType.forEach(type=>{
         type.subTypes.forEach(subType=>{
           subType.products.forEach(product=>{
-            
-            console.log(product);
-            
-            this.dataOfProducts.push({name: product.name, 
+                      
+            this.dataOfProducts.push({
+            id: product.id,
+            name:product.name, 
             type: type.name,
             subType: subType.name
             })
@@ -51,6 +51,7 @@ export class TableProductsComponent implements OnInit {
   }
 
   interface ItemProduct {
+    id:number;
     name: string;
     type: string;
     subType: string

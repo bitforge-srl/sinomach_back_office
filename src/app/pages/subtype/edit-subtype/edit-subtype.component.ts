@@ -1,7 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { RestService } from 'src/app/service/rest.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { ItemTypeAndSubType } from '../../type/type';
+import { ItemTypeAndSubType } from '../../../interfaces/type';
 
 
 @Component({

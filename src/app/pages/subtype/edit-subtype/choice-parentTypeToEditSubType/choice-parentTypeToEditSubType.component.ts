@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AllNameType, ItemType } from 'src/app/pages/type/type';
+import { AllNameType, ItemType } from 'src/app/interfaces/type';
 import { RestService } from 'src/app/service/rest.service';
 
 

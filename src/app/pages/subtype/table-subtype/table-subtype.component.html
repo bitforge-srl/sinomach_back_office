@@ -20,7 +20,7 @@
                             [typeId]="data.typeId"
                             [parentType]="data.nameParentType"
                             [subType]="data.nameSubType"
-                            ></app-editSubType>
+                            *ngIf="data.nameSubType !== default"></app-editSubType>
           <app-removeSubType [subtypeId]="data.subtypeId"></app-removeSubType>
         </td>
       </tr>

@@ -2,7 +2,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component ,Input,OnInit, ViewChild } from '@angular/core';
 import { NzTableComponent } from 'ng-zorro-antd/table';
 import { RestService } from 'src/app/service/rest.service';
-import { ItemType, DragAndDropItem  } from 'src/app/pages/type/type'; 
+import { ItemType, DragAndDropItem  } from 'src/app/interfaces/type'; 
 
 
 

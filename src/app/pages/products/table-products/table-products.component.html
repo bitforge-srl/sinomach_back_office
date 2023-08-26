@@ -8,9 +8,9 @@
       [nzScroll]="{ x: '1200px', y: '650px' }">
       <thead>
         <tr>
-          <th nzLeft nzWidth="30%">ProductName</th>
+          <th nzLeft nzWidth="20%">ProductName</th>
           <th nzWidth="30%">Type</th>
-          <th nzWidth="20%">SubType</th>
+          <th nzWidth="30%">SubType</th>
           <th nzRight nzWidth="20%">Action</th>
         </tr>
       </thead>
@@ -20,9 +20,9 @@
           <td  >{{data.type}}</td>
           <td  >{{data.subType}}</td>
 
-
           <td >
-            <a>action</a>
+            <app-editProduct [productId]="data.id"></app-editProduct>
+            <app-removeProduct [productId]="data.id"></app-removeProduct>
           </td>
         </tr>
       </tbody>

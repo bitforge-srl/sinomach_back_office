@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NzTableComponent } from 'ng-zorro-antd/table';
 import { RestService } from 'src/app/service/rest.service';
-import { ItemSubType, ItemTypeAndSubType, ItemTypeForSubType } from '../../type/type';
+import { ItemSubType, ItemTypeAndSubType, ItemTypeForSubType } from '../../../interfaces/type';
 
 
 @Component({
@@ -13,11 +13,14 @@ export class TableSubTypeComponent implements OnInit{
 
   @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<ItemTypeAndSubType>;
   
+  default = "default";
+  
   constructor(private service: RestService) { }
 
   dataTypes:ItemTypeForSubType[] = [];
   dataTypeAndSubType:ItemTypeAndSubType[]=[];
-
+ 
+   
   ngOnInit(): void {
         
      this.service.getDataTypes().subscribe(types=> {
@@ -30,7 +33,9 @@ export class TableSubTypeComponent implements OnInit{
                                           nameSubType:itemSubType.name, 
                                           nameParentType:data.name})
           })
+          
         }); 
      });    
   }
+ 
 }

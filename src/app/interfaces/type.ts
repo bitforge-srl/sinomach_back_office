@@ -4,14 +4,14 @@ export interface ItemType {
     shortDescription:string;
     imgBanner:string;
     img:string;
-    subtypes: ItemSubType[];
+    subTypes: ItemSubType[];
     order: number;
   }
   
   export interface ItemSubType {
     id: number;
     name: string;
-    products: any[];
+    products: ItemProduct[];
   }
   
   export interface DragAndDropItem {
@@ -35,5 +35,14 @@ export interface ItemType {
       typeId:number;
       nameSubType: string;
       nameParentType: string;
+    }
+
+    interface ItemProduct{
+    id:number,
+    name:String;
+    fullDescription:string,
+    shortSpecification:string
+    content: string
+    img:string
     }
    

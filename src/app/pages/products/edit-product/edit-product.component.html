@@ -1,0 +1,74 @@
+  
+<button nz-button nzType="primary" class="editButton" (click)="showModal()">
+  <span nz-icon nzType="edit" nzTheme="outline"></span>
+</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Product" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+ 
+  <ng-container *nzModalContent>
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+
+        <nz-form-item>
+          <nz-form-label>EditType</nz-form-label>
+          <nz-form-control>
+            <app-choice-typeForEditProduct (parentTypeSelected)="parentTypeSelected($event)"></app-choice-typeForEditProduct>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item *ngIf="parentType">
+          <nz-form-label>ParentSubType</nz-form-label>
+          <nz-form-control>
+              <app-choice-subTypeForEditProduct 
+                [parentType]="parentType"
+                (parentSubTypeSelected)="parentSubTypeSelected($event)">
+              </app-choice-subTypeForEditProduct>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>NameProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter name product" [(ngModel)]="productName" name="productName"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>FullDescriptionProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter fullDescription product" [(ngModel)]="fullDescription" name="fullDescription"/>
+          </nz-form-control>
+        </nz-form-item>
+      
+        <nz-form-item>
+          <nz-form-label>ShortSpecificationProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter shortSpecification product" [(ngModel)]="shortSpecification" name="shortSpecification"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>ContentProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter content product" [(ngModel)]="content" name="content"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>AdditionalDescriptionProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter additionalDescription product" [(ngModel)]="additionalDescription" name="additionalDescription"/>
+          </nz-form-control>
+        </nz-form-item>
+        
+        <nz-form-item>
+          <nz-form-label>ImgProduct</nz-form-label>
+          <nz-form-control>
+            <input  nz-input  placeholder="please enter img product" [(ngModel)]="img" name="img"/>
+          </nz-form-control>
+        </nz-form-item>
+     
+      </div>         
+    </div>    
+
+  </ng-container>
+</nz-modal>

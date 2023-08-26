@@ -1,7 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { RestService } from 'src/app/service/rest.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { ItemType, DragAndDropItem } from 'src/app/pages/type/type'; 
+import { ItemType, DragAndDropItem } from 'src/app/interfaces/type'; 
 
 
 @Component({

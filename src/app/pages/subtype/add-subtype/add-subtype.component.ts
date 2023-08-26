@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RestService } from 'src/app/service/rest.service';
-import { ItemType } from '../../type/type';
+import { ItemType } from '../../../interfaces/type';
 
 
 @Component({
@@ -10,8 +10,7 @@ import { ItemType } from '../../type/type';
 })
 export class AddSubTypeComponent {
 
-  @Input()
-  parentType!: ItemType;
+  @Input() parentType!: ItemType;
 
   newSubTypeName: any
 
@@ -20,10 +19,6 @@ export class AddSubTypeComponent {
     console.log("Received parentTypeId:", this.parentType);
   }
    
-addNewSubType() {
-throw new Error('Method not implemented.');
-}
-
   constructor(private service: RestService) { }
 
   visible = false;

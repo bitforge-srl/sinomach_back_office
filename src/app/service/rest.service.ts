@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DragAndDropItem, ItemType } from '../pages/type/type';
+import { DragAndDropItem, ItemType } from '../interfaces/type';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
-  
+    
   constructor(private http: HttpClient) { }
 
   getDataTypes(): Observable<any> {
@@ -73,11 +73,55 @@ export class RestService {
 
       console.log(subtypeId);
 
-console.log("service editSubtype");
+    console.log("service editSubtype");
     const templateUrl =  'http://localhost:8080/api/subtype/edit';
     return this.http.post(templateUrl, dataSubType);
   }
 
- 
-}
+  addProduct():Observable<any>{
+    const dataProduct = {
+       };
+
+      console.log(dataProduct);
+
+    console.log("service addProduct");
+    const templateUrl =  'http://localhost:8080/api/product/add';
+    return this.http.post(templateUrl, dataProduct);
+  }
+
+  deleteProduct(productId:number):Observable<any>{
+    const templateUrl =  'http://localhost:8080/api/product/delete'+productId;
+    return this.http.delete(templateUrl)
+  }
+
+  editProduct(
+        productId:number| undefined,
+        typeId: number| undefined,
+        subTypeId: number| undefined,
+        productName:string|undefined, 
+        fullDescription:string|undefined, 
+        shortSpecification:string|undefined, 
+        content:string|undefined,
+        additionalDescription:string|undefined,
+        img:string|undefined
+        ):Observable<any>{
+       const dataProduct = {
+                "productId":productId,
+                "typeId":typeId,
+                "subTypeId":subTypeId,
+                "productName":productName, 
+                "fullDescription":fullDescription, 
+                "shortSpecification":shortSpecification, 
+                "content":content,
+                "additionalDescription":additionalDescription,
+                "img":img
+               };
+
+      console.log(dataProduct);
+
+    console.log("service editProduct");
+    const templateUrl =  'http://localhost:8080/api/product/edit';
+    return this.http.post(templateUrl, dataProduct);
+  }
+ }
 
