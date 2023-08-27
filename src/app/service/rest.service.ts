@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DragAndDropItem, ItemType } from '../interfaces/type';
+import { DragAndDropItem, ItemSubType, ItemType } from '../interfaces/type';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
-    
+      
   constructor(private http: HttpClient) { }
 
   getDataTypes(): Observable<any> {
@@ -78,8 +78,27 @@ export class RestService {
     return this.http.post(templateUrl, dataSubType);
   }
 
-  addProduct():Observable<any>{
-    const dataProduct = {
+  addProduct(
+      productId:number| undefined,
+      type: ItemType| undefined,
+      subType: ItemSubType| undefined,
+      productName:string|undefined, 
+      fullDescription:string|undefined, 
+      shortSpecification:string|undefined, 
+      content:string|undefined,
+      additionalDescription:string|undefined,
+      img:string|undefined
+    ):Observable<any>{
+      const dataProduct = {
+                  "productId":productId,
+                  "type":type,
+                  "subType":subType,
+                  "name":productName, 
+                  "fullDescription":fullDescription, 
+                  "shortSpecification":shortSpecification, 
+                  "content":content,
+                  "additionalDescription":additionalDescription,
+                  "img":img
        };
 
       console.log(dataProduct);
@@ -90,14 +109,14 @@ export class RestService {
   }
 
   deleteProduct(productId:number):Observable<any>{
-    const templateUrl =  'http://localhost:8080/api/product/delete'+productId;
+    const templateUrl =  'http://localhost:8080/api/product/delete/'+productId;
     return this.http.delete(templateUrl)
   }
 
   editProduct(
         productId:number| undefined,
-        typeId: number| undefined,
-        subTypeId: number| undefined,
+        type: ItemType| undefined,
+        subType: ItemSubType| undefined,
         productName:string|undefined, 
         fullDescription:string|undefined, 
         shortSpecification:string|undefined, 
@@ -107,8 +126,8 @@ export class RestService {
         ):Observable<any>{
        const dataProduct = {
                 "productId":productId,
-                "typeId":typeId,
-                "subTypeId":subTypeId,
+                "type":type,
+                "subType":subType,
                 "productName":productName, 
                 "fullDescription":fullDescription, 
                 "shortSpecification":shortSpecification, 
@@ -122,6 +141,12 @@ export class RestService {
     console.log("service editProduct");
     const templateUrl =  'http://localhost:8080/api/product/edit';
     return this.http.post(templateUrl, dataProduct);
+  }
+
+  getProduct(productId:number):Observable<any> {
+    const templateUrl =  'http://localhost:8080/api/product/'+productId;
+
+    return this.http.get(templateUrl);
   }
  }
 

@@ -28,11 +28,13 @@ export class ChoiceParentSubTypeOfProductComponent {
 
   ngOnChanges(changes: SimpleChanges){
     if ('parentType' in changes){
+      this.menuItems=[];
       const newParentType = changes['parentType'].currentValue;
       if (newParentType) {
         console.log("****************", this.parentType.subTypes);
        
         this.parentType.subTypes.forEach(subType=>{
+
           const item:AllNameType = {
              name: subType.name,
                         value: subType.name,

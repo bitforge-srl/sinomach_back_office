@@ -56,7 +56,16 @@ parentSubTypeSelected(selected: ItemSubType) {
   addProduct(): void {
     console.log("addProduct");
     
-  this.service.addProduct().subscribe(
+  this.service.addProduct(
+    undefined,
+    this.parentType,
+    this.parentSubType,
+    this.productName, 
+    this.fullDescription, 
+    this.shortSpecification, 
+    this.content,
+    this.additionalDescription,
+    this.img).subscribe(
     response=>{
         if(response.success == true){
         console.log(response);

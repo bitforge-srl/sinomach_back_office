@@ -35,9 +35,9 @@ export interface ItemType {
       typeId:number;
       nameSubType: string;
       nameParentType: string;
-    }
+    } 
 
-    interface ItemProduct{
+    export interface ItemProduct{
     id:number,
     name:String;
     fullDescription:string,

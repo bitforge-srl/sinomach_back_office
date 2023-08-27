@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AllNameType, ItemType } from 'src/app/interfaces/type';
 import { RestService } from 'src/app/service/rest.service';
 
@@ -25,8 +25,9 @@ export class ChoiceTypeForEditProductProductComponent {
 
 
   ngOnInit(): void {this.service.getDataTypes().subscribe(type=> {
+    
     this.dataTypeForChoice = type;
-
+    
     this.dataTypeForChoice.forEach(type => {
       const nameType:AllNameType={
         name: type.name,
@@ -39,6 +40,7 @@ export class ChoiceTypeForEditProductProductComponent {
 
   onOptionSelect(value: string): void {
     this.selectedOption = value;
+
     console.log(this.selectedOption);
 
     const selectedType = this.dataTypeForChoice.find(type => type.name === this.selectedOption);
