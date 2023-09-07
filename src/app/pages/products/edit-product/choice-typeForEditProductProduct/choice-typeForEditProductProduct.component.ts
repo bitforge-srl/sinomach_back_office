@@ -19,31 +19,31 @@ export class ChoiceTypeForEditProductProductComponent {
 
   dataTypeForChoice: ItemType[] = [];
 
-  selectedOption: string | null = null;
+  selectedOption: number | null = null;
 
   parentTypeId: number|undefined;
 
 
   ngOnInit(): void {this.service.getDataTypes().subscribe(type=> {
-    
+
     this.dataTypeForChoice = type;
-    
+
     this.dataTypeForChoice.forEach(type => {
       const nameType:AllNameType={
         name: type.name,
-        value: type.name,
+        value: type.id,
       }
         this.menuItems.push(nameType);
     });
   });
        }
 
-  onOptionSelect(value: string): void {
+  onOptionSelect(value: number): void {
     this.selectedOption = value;
 
     console.log(this.selectedOption);
 
-    const selectedType = this.dataTypeForChoice.find(type => type.name === this.selectedOption);
+    const selectedType = this.dataTypeForChoice.find(type => type.id === this.selectedOption);
     if (selectedType) {
       this.parentTypeSelected.emit(selectedType);
     }

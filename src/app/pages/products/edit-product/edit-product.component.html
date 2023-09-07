@@ -1,74 +1,68 @@
-  
 <button nz-button nzType="primary" class="editButton" (click)="showModal()">
   <span nz-icon nzType="edit" nzTheme="outline"></span>
 </button>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Product" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
- 
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Product"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzWidth]="'50%'">
+
   <ng-container *nzModalContent>
     <div nz-row [nzGutter]="8">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="50">
 
         <nz-form-item>
           <nz-form-label>EditType</nz-form-label>
           <nz-form-control>
-            <app-choice-typeForEditProduct (parentTypeSelected)="parentTypeSelected($event)"></app-choice-typeForEditProduct>
+            <app-choice-typeForEditProduct
+              (parentTypeSelected)="parentTypeSelected($event)"></app-choice-typeForEditProduct>
           </nz-form-control>
         </nz-form-item>
-    
+
         <nz-form-item *ngIf="parentType">
           <nz-form-label>ParentSubType</nz-form-label>
-          <nz-form-control> 
-              <app-choice-subTypeForEditProduct 
-                [parentType]="parentType"
-                (parentSubTypeSelected)="parentSubTypeSelected($event)">
-              </app-choice-subTypeForEditProduct>
+          <nz-form-control>
+            <app-choice-subTypeForEditProduct
+              [parentType]="parentType"
+              (parentSubTypeSelected)="parentSubTypeSelected($event)">
+            </app-choice-subTypeForEditProduct>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label>NameProduct</nz-form-label>
           <nz-form-control>
-            <input  nz-input  placeholder = productName [(ngModel)]="productName" name="productName"/>
+            <input nz-input [(ngModel)]="productName" name="productName"/>
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-          <nz-form-label>FullDescriptionProduct</nz-form-label>
-          <nz-form-control>
-            <input  nz-input  placeholder = fullDescription [(ngModel)]="fullDescription" name="fullDescription"/>
-          </nz-form-control>
-        </nz-form-item>
-      
-        <nz-form-item>
-          <nz-form-label>ShortSpecificationProduct</nz-form-label>
-          <nz-form-control>
-            <input  nz-input  placeholder = shortSpecification [(ngModel)]="shortSpecification" name="shortSpecification"/>
-          </nz-form-control>
-        </nz-form-item>
+        <nz-collapse nzAccordion>
 
-        <nz-form-item>
-          <nz-form-label>ContentProduct</nz-form-label>
-          <nz-form-control>
-            <input  nz-input  placeholder = content [(ngModel)]="content" name="content"/>
-          </nz-form-control>
-        </nz-form-item>
+          <nz-collapse-panel [nzHeader]="'FullDescriptionProduct'" [nzActive]="false">
+            <angular-editor
+              [(ngModel)]="contentForFullDescription"></angular-editor>
+          </nz-collapse-panel>
 
-        <nz-form-item>
-          <nz-form-label>AdditionalDescriptionProduct</nz-form-label>
-          <nz-form-control>
-            <input  nz-input  placeholder = additionalDescription [(ngModel)]="additionalDescription" name="additionalDescription"/>
-          </nz-form-control>
-        </nz-form-item>
-        
-        <nz-form-item>
-          <nz-form-label>ImgProduct</nz-form-label>
-          <nz-form-control>
-            <input  nz-input  placeholder = img [(ngModel)]="img" name="img"/>
-          </nz-form-control>
-        </nz-form-item>
-     
-      </div>         
-    </div>    
+          <nz-collapse-panel [nzHeader]="'ShortSpecificationProduct'" [nzActive]="false">
+            <angular-editor
+              [(ngModel)]="contentForShortSpecificationProduct"></angular-editor>
+          </nz-collapse-panel>
+
+          <nz-collapse-panel [nzHeader]="'ContentProduct'" [nzActive]="false">
+            <angular-editor [(ngModel)]="contentForContentProduct"></angular-editor>
+          </nz-collapse-panel>
+
+          <nz-collapse-panel [nzHeader]="'AdditionalDescriptionProduct'" [nzActive]="false">
+            <angular-editor [(ngModel)]="contentForAdditionalDescription"></angular-editor>
+          </nz-collapse-panel>
+
+          <nz-collapse-panel [nzHeader]="'ImgProduct'" [nzActive]="false">
+            <angular-editor [(ngModel)]="contentForImage"></angular-editor>
+          </nz-collapse-panel>
+
+        </nz-collapse>
+
+      </div>
+    </div>
 
   </ng-container>
 </nz-modal>

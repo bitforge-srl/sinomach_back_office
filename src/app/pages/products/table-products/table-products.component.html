@@ -1,30 +1,28 @@
+<nz-table #fixedTable [nzData]="dataOfProducts"
+          [nzBordered]="true"
+          [nzVirtualItemSize]="45"
+          [nzTotal]="15"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzScroll]="{ x: '1200px', y: '650px' }">
+  <thead>
+  <tr>
+    <th nzLeft nzWidth="20%">ProductName</th>
+    <th nzWidth="30%">Type</th>
+    <th nzWidth="30%">SubType</th>
+    <th nzRight nzWidth="20%">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of dataOfProducts">
+    <td>{{data.name}}</td>
+    <td>{{data.type}}</td>
+    <td>{{data.subType}}</td>
 
-<nz-table #fixedTable [nzData]="dataOfProducts" 
-      [nzBordered]="true"
-      [nzVirtualItemSize]="45"
-      [nzTotal]="15"
-      [nzFrontPagination]="true"
-      [nzShowPagination]="true"
-      [nzScroll]="{ x: '1200px', y: '650px' }">
-      <thead>
-        <tr>
-          <th nzLeft nzWidth="20%">ProductName</th>
-          <th nzWidth="30%">Type</th>
-          <th nzWidth="30%">SubType</th>
-          <th nzRight nzWidth="20%">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of dataOfProducts">
-          <td >{{data.name}}</td>
-          <td  >{{data.type}}</td>
-          <td  >{{data.subType}}</td>
-
-          <td >
-            <app-editProduct [productId]="data.id"></app-editProduct>
-            <app-removeProduct [productId]="data.id"></app-removeProduct>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>
-  
+    <td>
+      <app-editProduct [productId]="data.id"></app-editProduct>
+      <app-removeProduct [productId]="data.id"></app-removeProduct>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

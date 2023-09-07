@@ -21,6 +21,7 @@ import { EditComponent } from './edit-type/edit-type.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 
@@ -29,25 +30,25 @@ import { MatTableModule } from '@angular/material/table';
     declarations: [TypeComponent, TableComponent, AddTypeComponent, RemoveComponent, EditComponent],
     exports: [TypeComponent],
     imports: [TypeRoutingModule,
-            NzTableModule,
-            CommonModule,
-            NzResizableModule,
-            NzDrawerModule, 
-            NzFormModule, 
-            NzInputModule,
-            NzSelectModule,
-            NzDatePickerModule,
-            NzIconModule,
-            ReactiveFormsModule,
-            FormsModule,
-            NzModalModule,
-            DragDropModule,
-            MatTableModule,
-            
-            ],
+        NzTableModule,
+        CommonModule,
+        NzResizableModule,
+        NzDrawerModule,
+        NzFormModule,
+        NzInputModule,
+        NzSelectModule,
+        NzDatePickerModule,
+        NzIconModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzModalModule,
+        DragDropModule,
+        MatTableModule, NzButtonModule,
+
+    ],
         providers:[
             NzModalService,
         ]
-        
+
 })
 export class TypeModule { }

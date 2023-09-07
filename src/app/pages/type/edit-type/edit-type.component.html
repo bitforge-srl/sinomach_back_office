@@ -1,13 +1,47 @@
-  
 <button nz-button nzType="primary" class="editButton" (click)="showModal()">
   <span nz-icon nzType="edit" nzTheme="outline"></span>
 </button>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Type" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Type"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzWidth]="'50%'">
+
   <ng-container *nzModalContent>
-    <input [(ngModel)]="editedNameType" [placeholder]="data?.name" class="editType" >
-    <input [(ngModel)]="editedDescriptionType" [placeholder]="data?.shortDescription" class="editType" >
-    <input [(ngModel)]="editedSrcBannerType" [placeholder]="data?.imgBanner" class="editType" >
-    <input [(ngModel)]="editedSrcImgType" [placeholder]="data?.img" class="editType" >
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="50">
+
+        <nz-form-item>
+          <nz-form-label>Type</nz-form-label>
+          <nz-form-control>
+            <input  nz-input [(ngModel)]="editedNameType" [placeholder]="data?.name" class="editType" name="Type">
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>descriptionType</nz-form-label>
+          <nz-form-control>
+            <input  nz-input [(ngModel)]="editedDescriptionType" [placeholder]="data?.shortDescription" class="editType"
+                   name="descriptionType">
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>srcBannerOfType</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="editedSrcBannerType" [placeholder]="data?.imgBanner" class="editType"
+                   name="'srcBannerOfType'">
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>srcImageOfType</nz-form-label>
+          <nz-form-control>
+            <input  nz-input [(ngModel)]="editedSrcImgType" [placeholder]="data?.img" class="editType" name="srcImageOfType">
+          </nz-form-control>
+        </nz-form-item>
+
+      </div>
+    </div>
 
   </ng-container>
 </nz-modal>

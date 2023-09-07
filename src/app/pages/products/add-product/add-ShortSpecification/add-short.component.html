@@ -1,0 +1,33 @@
+<nz-table #fixedTable [nzData]="shortSpecifications"
+          [nzBordered]="true"
+          [nzVirtualItemSize]="12"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzScroll]="{ x: '700x', y: '150px' }">
+  <thead>
+  <tr>
+    <th nzLeft nzWidth="50%">Name</th>
+    <th nzWidth="30%">Value</th>
+    <th nzWidth="20%">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of shortSpecifications">
+    <td> {{data.name}} </td>
+    <td> {{data.value}} </td>
+    <td>
+      <button nz-button nzType="primary" class="removeButton" (click)="deleteItem()">
+        <span nz-icon nzType="delete" nzTheme="outline"> </span>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<div style="display: inline-block;" width="24">
+  <label>Name: </label>
+  <input [(ngModel)]="nameShortSpecification" name="nameShortSpecification"/>
+  <label> Value: </label>
+  <input [(ngModel)]="valueOfShortSpecification" name="nameShortSpecification"/>
+</div>
+<button nz-button nzType="primary" (click)="addItem()" class="addButton">+</button>

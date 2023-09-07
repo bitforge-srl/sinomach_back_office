@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AllNameType, ItemType } from 'src/app/interfaces/type';
-import { RestService } from 'src/app/service/rest.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AllNameType, ItemType} from 'src/app/interfaces/type';
+import {RestService} from 'src/app/service/rest.service';
 
 
 @Component({
@@ -13,47 +13,49 @@ export class ChoiceParentTypeToEditSubTypeComponent {
 
   @Output() EditSelectedSubType = new EventEmitter<number>();
 
-  constructor(private service: RestService) { }
+  constructor(private service: RestService) {
+  }
 
-  menuItems:AllNameType[] = [];
+  menuItems: AllNameType[] = [];
   dataTypeForChoice: ItemType[] = [];
 
-  selectedOption: string | any;
-  selectedTypeId: number| any;
-  parentTypeId: number|undefined;
+  selectedOption: number | any;
+  selectedTypeId: number | any;
+  parentTypeId: number | undefined;
   selectedType: string | any;
 
-  
-  @Input() parentType: string | undefined = '';
 
-  ngOnInit(): void {this.service.getDataTypes().subscribe(type=> {
-    this.dataTypeForChoice = type;
+  @Input() parentType: number | undefined = 0;
 
-    this.dataTypeForChoice.forEach(element => {
-      const nameType:AllNameType={
-        name: element.name,
-        value: element.name,
-      }
+  ngOnInit(): void {
+    console.log("ON init choice parent type to edit sub type")
+    this.service.getDataTypes().subscribe(types => {
+      this.dataTypeForChoice = types;
+
+      this.dataTypeForChoice.forEach(type => {
+        const nameType: AllNameType = {
+          name: type.name,
+          value: type.id,
+        }
         this.menuItems.push(nameType);
-        this.selectedOption = this.parentType;
-    });      
-    
-  });
-       }
+            });
 
-    
-  onOptionSelect(value: string): void {
-    this.selectedOption = value;
-    console.log("selectedOption"); 
+      this.selectedOption = this.parentType;
+    });
+  }
+
+
+  onOptionSelect(value: number): void {
+    console.log("selectedOption");
     console.log(this.selectedOption);
 
-    const selectedType = this.dataTypeForChoice.find(type => type.name === this.selectedOption);
+    const selectedType = this.dataTypeForChoice.find(type => type.id === this.selectedOption);
     if (selectedType) {
       this.selectedTypeId = selectedType.id;
-     
+
       this.EditSelectedSubType.emit(this.selectedTypeId);
-    
+
     }
   }
- }
+}
 

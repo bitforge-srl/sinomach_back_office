@@ -24,24 +24,29 @@ import { RemoveProductComponent } from './remove-product/remove-product.componen
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ChoiceTypeForEditProductProductComponent } from './edit-product/choice-typeForEditProductProduct/choice-typeForEditProductProduct.component';
 import { ChoiceSubTypeForEditProductComponent } from './edit-product/choice-subTypeForEditProductProduct/choice-subTypeForEditProductProduct.component';
+import {AngularEditorModule} from "@kolkov/angular-editor";
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {AddShortComponent} from "./add-product/add-ShortSpecification/add-short.component";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 @NgModule({
   imports: [ProductsRoutingModule,
-     NzTableModule, 
-     CommonModule,
-     FormsModule,
-     NzResizableModule,
-     NzDrawerModule,
-     NzFormModule,
-     NzInputModule,
-     NzSelectModule,
-     NzDatePickerModule,
-     NzIconModule,
-     ReactiveFormsModule,
-     NzModalModule,
-     NzCascaderModule
-    ],
+    NzTableModule,
+    CommonModule,
+    FormsModule,
+    NzResizableModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputModule,
+    NzSelectModule,
+    NzDatePickerModule,
+    NzIconModule,
+    ReactiveFormsModule,
+    NzModalModule,
+    NzCascaderModule,
+    AngularEditorModule, NzCollapseModule, NzButtonModule
+  ],
 
   declarations: [ProductsComponent,
     TableProductsComponent,
@@ -51,7 +56,8 @@ import { ChoiceSubTypeForEditProductComponent } from './edit-product/choice-subT
     RemoveProductComponent,
     EditProductComponent,
     ChoiceTypeForEditProductProductComponent,
-    ChoiceSubTypeForEditProductComponent
+    ChoiceSubTypeForEditProductComponent,
+    AddShortComponent
   ],
   exports: [ProductsComponent]
 })

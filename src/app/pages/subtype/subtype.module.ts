@@ -24,37 +24,38 @@ import { RemoveSubTypeComponent } from './remove-subtype/remove-subtype.componen
 import { ChoiceParentTypeComponent } from './add-subtype/choice-parentType/choice-parentType.component';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { ChoiceParentTypeToEditSubTypeComponent } from './edit-subtype/choice-parentTypeToEditSubType/choice-parentTypeToEditSubType.component';
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 
 
 @NgModule({
-  declarations: [SubtypeComponent, 
+  declarations: [SubtypeComponent,
     TableSubTypeComponent,
      AddSubTypeComponent,
-     EditSubTypeComponent, 
-     RemoveSubTypeComponent, 
+     EditSubTypeComponent,
+     RemoveSubTypeComponent,
      ChoiceParentTypeComponent,
      ChoiceParentTypeToEditSubTypeComponent,
     ],
   exports: [SubtypeComponent],
-  imports: [SubtypeRoutingModule,
-          NzTableModule,
-          CommonModule, 
-          FormsModule,
-          NzResizableModule,
-          NzDrawerModule,
-          NzFormModule,
-          NzInputModule,
-          NzSelectModule,
-          NzDatePickerModule,
-          NzIconModule,
-          ReactiveFormsModule,
-          NzModalModule,
-          NzCascaderModule
-          
+    imports: [SubtypeRoutingModule,
+        NzTableModule,
+        CommonModule,
+        FormsModule,
+        NzResizableModule,
+        NzDrawerModule,
+        NzFormModule,
+        NzInputModule,
+        NzSelectModule,
+        NzDatePickerModule,
+        NzIconModule,
+        ReactiveFormsModule,
+        NzModalModule,
+        NzCascaderModule, NzButtonModule
 
-   ]
+
+    ]
 
 })
 export class SubtypeModule { }

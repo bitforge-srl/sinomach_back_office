@@ -19,7 +19,7 @@ export class ChoiceParentTypeComponent {
 
   dataTypeForChoice: ItemType[] = [];
 
-  selectedOption: string | null = null;
+  selectedOption: number | null = null;
 
   parentTypeId: number|undefined;
 
@@ -30,18 +30,18 @@ export class ChoiceParentTypeComponent {
     this.dataTypeForChoice.forEach(element => {
       const nameType:AllNameType={
         name: element.name,
-        value: element.name,
+        value: element.id,
       }
         this.menuItems.push(nameType);
     });
   });
        }
 
-  onOptionSelect(value: string): void {
+  onOptionSelect(value: number): void {
     this.selectedOption = value;
     console.log(this.selectedOption);
 
-    const selectedType = this.dataTypeForChoice.find(type => type.name === this.selectedOption);
+    const selectedType = this.dataTypeForChoice.find(type => type.id === this.selectedOption);
     if (selectedType) {
       this.parentTypeSelected.emit(selectedType);
     }

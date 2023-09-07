@@ -1,7 +1,7 @@
-import { JsonPipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { AllNameType, ItemSubType, ItemType } from 'src/app/interfaces/type';
-import { RestService } from 'src/app/service/rest.service';
+import {JsonPipe} from '@angular/common';
+import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {AllNameType, ItemSubType, ItemType} from 'src/app/interfaces/type';
+import {RestService} from 'src/app/service/rest.service';
 
 
 @Component({
@@ -12,50 +12,48 @@ import { RestService } from 'src/app/service/rest.service';
 
 export class ChoiceParentSubTypeOfProductComponent {
 
-  @Input() parentType!:ItemType;
+  @Input() parentType!: ItemType;
 
   @Output() parentSubTypeSelected = new EventEmitter<ItemSubType>();
 
-  constructor(private service: RestService) { }
-
-  menuItems:AllNameType[] = [];
+   menuItems: AllNameType[] = [];
 
   dataSubTypeForChoice: ItemSubType[] = [];
 
-  selectedOption: string | null = null;
+  selectedOption: number | null = null;
 
-  parentTypeId: number|undefined;
+  parentTypeId: number | undefined;
 
-  ngOnChanges(changes: SimpleChanges){
-    if ('parentType' in changes){
-      this.menuItems=[];
+  ngOnChanges(changes: SimpleChanges) {
+    if ('parentType' in changes) {
+      this.menuItems = [];
       const newParentType = changes['parentType'].currentValue;
       if (newParentType) {
-        console.log("****************", this.parentType.subTypes);
-       
-        this.parentType.subTypes.forEach(subType=>{
+        this.parentType.subTypes.forEach(subType => {
+            if (subType.name === "default") {
+              subType.name = "no SybType";
+              this.selectedOption = subType.id;
+            }
+            const item: AllNameType = {
+              name: subType.name,
+              value: subType.id,
+            }
 
-          const item:AllNameType = {
-             name: subType.name,
-                        value: subType.name,
-                       }
-        
-        this.menuItems.push(item);}
-        )}
-     }
-   } 
-  
-      
-  onOptionSelect(value: string): void {
-    console.log(this.parentType);
-    
+            this.menuItems.push(item);
+          }
+        )
+      }
+    }
+  }
+
+
+  onOptionSelect(value: number): void {
     this.selectedOption = value;
-    console.log(this.selectedOption);
 
-    const selectedSubType = this.parentType.subTypes.find(subtype => subtype.name === this.selectedOption);
-   if (selectedSubType) {
+    const selectedSubType = this.parentType.subTypes.find(subtype => subtype.id === this.selectedOption);
+    if (selectedSubType) {
       this.parentSubTypeSelected.emit(selectedSubType);
     }
   }
- }
+}
 

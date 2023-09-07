@@ -1,5 +1,6 @@
 .editType {
-width: 90%; 
-max-height: 90vh;
-margin-bottom: 20px; 
+  width: 90%;
+  max-height: 90vh;
+  margin-bottom: 20px;
+  background:#fff;
 }

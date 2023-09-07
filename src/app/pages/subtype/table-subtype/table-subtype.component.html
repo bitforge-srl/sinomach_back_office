@@ -1,28 +1,28 @@
-<nz-table #fixedTable [nzData]="dataTypeAndSubType" 
-      [nzBordered]="true"
-      [nzVirtualItemSize]="35"
-      [nzFrontPagination]="false"
-      [nzShowPagination]="false"
-      [nzScroll]="{ x: '1200px', y: '720px' }">
-    <thead>
-      <tr>
-        <th nzLeft nzWidth="50%">SubType</th>
-        <th nzLeft nzWidth="30%">ParentType</th>
-        <th nzRight nzWidth="20%">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of dataTypeAndSubType">
-        <td nzLeft>{{data.nameSubType}}</td>
-        <td nzLeft>{{data.nameParentType}}</td>      
-        <td nzRight>
-          <app-editSubType  [subtypeId]="data.subtypeId" 
-                            [typeId]="data.typeId"
-                            [parentType]="data.nameParentType"
-                            [subType]="data.nameSubType"
-                            *ngIf="data.nameSubType !== default"></app-editSubType>
-          <app-removeSubType [subtypeId]="data.subtypeId"></app-removeSubType>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+<nz-table #fixedTable [nzData]="dataTypeAndSubType"
+          [nzBordered]="true"
+          [nzVirtualItemSize]="35"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzScroll]="{ x: '1200px', y: '720px' }">
+  <thead>
+  <tr>
+    <th nzLeft nzWidth="50%">SubType</th>
+    <th nzLeft nzWidth="30%">ParentType</th>
+    <th nzRight nzWidth="20%">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of dataTypeAndSubType">
+    <td nzLeft *ngIf="data.nameSubType !== default">{{data.nameSubType}}</td>
+    <td nzLeft *ngIf="data.nameSubType !== default">{{data.nameParentType}}</td>
+    <td nzRight *ngIf="data.nameSubType !== default">
+      <app-editSubType [subtypeId]="data.subtypeId"
+                       [typeId]="data.typeId"
+                       [parentType]="data.nameParentType"
+                       [subType]="data.nameSubType"></app-editSubType>
+      <app-removeSubType [subtypeId]="data.subtypeId"></app-removeSubType>
+
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

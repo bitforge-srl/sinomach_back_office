@@ -22,36 +22,36 @@ export class ChoiceSubTypeForEditProductComponent {
 
   dataSubTypeForChoice: ItemSubType[] = [];
 
-  selectedOption: string | null = null;
+  selectedOption: number | null = null;
 
   parentTypeId: number|undefined;
 
   ngOnChanges(changes: SimpleChanges){
-   
+
     if ('parentType' in changes){
       this.menuItems=[];
       const newParentType = changes['parentType'].currentValue;
       if (newParentType){
-       
+
         this.parentType.subTypes.forEach(subType=>{
           const item:AllNameType = {
              name: subType.name,
-                        value: subType.name,
+                        value: subType.id,
                        }
-        
+
         this.menuItems.push(item);}
         )}
      }
-   } 
-  
-      
-  onOptionSelect(value: string): void {
+   }
+
+
+  onOptionSelect(value: number): void {
     console.log(this.parentType);
-    
+
     this.selectedOption = value;
     console.log(this.selectedOption);
 
-    const selectedSubType = this.parentType.subTypes.find(subtype => subtype.name === this.selectedOption);
+    const selectedSubType = this.parentType.subTypes.find(subtype => subtype.id === this.selectedOption);
    if (selectedSubType) {
       this.parentSubTypeSelected.emit(selectedSubType);
     }
