@@ -7,11 +7,11 @@
       [nzVisible]="visible"
       nzTitle="Create"
       [nzFooter]="footerTpl"
-      (nzOnClose)="close()" 
+      (nzOnClose)="close()"
       >
       <form nz-form *nzDrawerContent>
         <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="12">
+          <div nz-col nzSpan="24">
 
             <nz-form-item>
               <nz-form-label>ParentType</nz-form-label>
@@ -19,11 +19,11 @@
                 <app-choice-parentTypeProduct (parentTypeSelected)="parentTypeSelected($event)"></app-choice-parentTypeProduct>
               </nz-form-control>
             </nz-form-item>
-        
+
             <nz-form-item *ngIf="parentType">
               <nz-form-label>ParentSubType</nz-form-label>
               <nz-form-control>
-                  <app-choice-parentSubTypeProduct 
+                  <app-choice-parentSubTypeProduct
                     [parentType]="parentType"
                     (parentSubTypeSelected)="parentSubTypeSelected($event)">
                   </app-choice-parentSubTypeProduct>
@@ -43,11 +43,11 @@
                 <input  nz-input  placeholder="please enter fullDescription product" [(ngModel)]="fullDescription" name="fullDescription"/>
               </nz-form-control>
             </nz-form-item>
-          
+
             <nz-form-item>
               <nz-form-label>ShortSpecificationProduct</nz-form-label>
               <nz-form-control>
-                <input  nz-input  placeholder="please enter shortSpecification product" [(ngModel)]="shortSpecification" name="shortSpecification"/>
+                <app-add-short></app-add-short>
               </nz-form-control>
             </nz-form-item>
 
@@ -64,16 +64,16 @@
                 <input  nz-input  placeholder="please enter additionalDescription product" [(ngModel)]="additionalDescription" name="additionalDescription"/>
               </nz-form-control>
             </nz-form-item>
-            
+
             <nz-form-item>
               <nz-form-label>ImgProduct</nz-form-label>
               <nz-form-control>
                 <input  nz-input  placeholder="please enter img product" [(ngModel)]="img" name="img"/>
               </nz-form-control>
             </nz-form-item>
-         
-          </div>         
-        </div>              
+
+          </div>
+        </div>
       </form>
 
       <ng-template #footerTpl>
@@ -82,6 +82,5 @@
           <button nz-button nzType="primary" (click)="addProduct()">Submit</button>
         </div>
       </ng-template>
-    
+
     </nz-drawer>
-  

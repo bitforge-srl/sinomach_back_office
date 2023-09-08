@@ -1,9 +1,10 @@
 <nz-table #fixedTable [nzData]="shortSpecifications"
           [nzBordered]="true"
-          [nzVirtualItemSize]="12"
+          [nzVirtualItemSize]="52"
           [nzFrontPagination]="false"
           [nzShowPagination]="false"
           [nzScroll]="{ x: '700x', y: '150px' }">
+
   <thead>
   <tr>
     <th nzLeft nzWidth="50%">Name</th>
@@ -12,7 +13,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of shortSpecifications">
+  <tr *ngFor="let data of shortSpecifications; let i = index">
     <td> {{data.name}} </td>
     <td> {{data.value}} </td>
     <td>

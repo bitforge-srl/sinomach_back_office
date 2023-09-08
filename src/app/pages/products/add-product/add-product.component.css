@@ -1,9 +1,9 @@
-.addButton  {
-    position: relative;
-    left:95%;
-    margin: 10px;  
-    padding: 0px;
-    font-size: 1.2em;
-    width: 45px;
-    height: 35px;
-}  
+.addButton {
+  position: relative;
+  left: 95%;
+  margin: 10px;
+  padding: 0px;
+  font-size: 1.2em;
+  width: 45px;
+  height: 35px;
+}
