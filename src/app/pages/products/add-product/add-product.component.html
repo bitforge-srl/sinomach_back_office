@@ -37,51 +37,60 @@
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-          <nz-form-label>FullDescriptionProduct</nz-form-label>
-          <div>
-            <nz-form-control>
-              <angular-editor [(ngModel)]="fullDescription" [config]="config" name="fullDescription"></angular-editor>
-            </nz-form-control>
-          </div>
-        </nz-form-item>
+        <nz-collapse nzAccordion>
+          <nz-collapse-panel [(nzActive)]="collapseStates.fullDescription" nzHeader="FullDescriptionProduct">
+            <nz-form-item>
+              <div>
+                <nz-form-control>
+                  <angular-editor [(ngModel)]="fullDescription" [config]="config"
+                                  name="fullDescription"></angular-editor>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+          </nz-collapse-panel>
 
-        <nz-form-item>
-          <nz-form-label>ShortSpecificationProduct</nz-form-label>
-          <div>
-            <nz-form-control>
-              <app-add-short></app-add-short>
-            </nz-form-control>
-          </div>
-        </nz-form-item>
+          <nz-collapse-panel [(nzActive)]="collapseStates.shortSpecification" nzHeader="ShortSpecificationProduct">
+            <nz-form-item>
+              <div>
+                <nz-form-control>
+                  <app-add-short></app-add-short>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+          </nz-collapse-panel>
 
-        <nz-form-item>
-          <nz-form-label>ContentProduct</nz-form-label>
-          <div>
-            <nz-form-control>
-              <angular-editor [(ngModel)]="content" [config]="config" name="content"></angular-editor>
-            </nz-form-control>
-          </div>
-        </nz-form-item>
+          <nz-collapse-panel [(nzActive)]="collapseStates.content" nzHeader="ContentProduct">
+            <nz-form-item>
+              <div>
+                <nz-form-control>
+                  <angular-editor [(ngModel)]="content" [config]="config" name="content"></angular-editor>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+          </nz-collapse-panel>
 
-        <nz-form-item>
-          <nz-form-label>AdditionalDescriptionProduct</nz-form-label>
-          <div>
-            <nz-form-control>
-              <angular-editor [(ngModel)]="additionalDescription" [config]="config"
-                              name="additionalDescription"></angular-editor>
-            </nz-form-control>
-          </div>
-        </nz-form-item>
+          <nz-collapse-panel [(nzActive)]="collapseStates.additionalDescription" nzHeader="AdditionalDescription">
+            <nz-form-item>
+              <div>
+                <nz-form-control>
+                  <angular-editor [(ngModel)]="additionalDescription" [config]="config"
+                                  name="additionalDescription"></angular-editor>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+          </nz-collapse-panel>
 
-        <nz-form-item>
-          <nz-form-label>ImgProduct</nz-form-label>
-          <div>
-            <nz-form-control>
-              <angular-editor [(ngModel)]="img" [config]="config" name="img"></angular-editor>
-            </nz-form-control>
-          </div>
-        </nz-form-item>
+          <nz-collapse-panel [(nzActive)]="collapseStates.img" nzHeader="ImgProduct">
+            <nz-form-item>
+              <div>
+                <nz-form-control>
+                  <angular-editor [(ngModel)]="img" [config]="config" name="img"></angular-editor>
+                </nz-form-control>
+              </div>
+            </nz-form-item>
+          </nz-collapse-panel>
+
+        </nz-collapse>
 
       </div>
     </div>

@@ -50,8 +50,13 @@ export class AddProductComponent {
   additionalDescription:string="";
   img:string="";
 
-  parentTypeForSubType!:ItemType;
-
+  collapseStates = {
+    fullDescription: false,
+    shortSpecification: false,
+    content: false,
+    additionalDescription: false,
+    img: false,
+  };
 parentTypeSelected(selected: ItemType) {
     this.parentType = selected;
     console.log("Received parentType", this.parentType);
