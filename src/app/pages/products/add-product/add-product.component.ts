@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { RestService } from 'src/app/service/rest.service';
-import { ItemSubType, ItemType } from '../../../interfaces/type';
+import {Component, Input} from '@angular/core';
+import {RestService} from 'src/app/service/rest.service';
+import {ItemSubType, ItemType} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 
@@ -43,12 +43,12 @@ export class AddProductComponent {
   parentType!: ItemType;
   parentSubType!: ItemSubType;
 
-  productName:string = "";
-  fullDescription:string="";
-  shortSpecification:string="";
-  content:string="";
-  additionalDescription:string="";
-  img:string="";
+  productName: string = "";
+  fullDescription: string = "";
+  shortSpecification: string = "";
+  content: string = "";
+  additionalDescription: string = "";
+  img: string = "";
 
   collapseStates = {
     fullDescription: false,
@@ -57,18 +57,28 @@ export class AddProductComponent {
     additionalDescription: false,
     img: false,
   };
-parentTypeSelected(selected: ItemType) {
+
+  parentTypeSelected(selected: ItemType) {
     this.parentType = selected;
     console.log("Received parentType", this.parentType);
+
+    this.parentType.subTypes.find(subtype => {
+      if (subtype.name === "default") {
+        this.parentSubType=subtype;
+      }
+    })
+    console.log("Default parentSubType:", this.parentSubType);
+
   }
 
-parentSubTypeSelected(selected: ItemSubType) {
+  parentSubTypeSelected(selected: ItemSubType) {
     this.parentSubType = selected;
     console.log("Received parentSubType:", this.parentSubType);
   }
 
 
-  constructor(private service: RestService) { }
+  constructor(private service: RestService) {
+  }
 
   visible = false;
 
@@ -77,19 +87,13 @@ parentSubTypeSelected(selected: ItemSubType) {
   }
 
   close(): void {
-    console.log("Output after Input", this.productName);
-    console.log("Output after Input", this.fullDescription);
-    console.log("Output after Input", this.shortSpecification);
-    console.log("Output after Input", this.content);
-    console.log("Output after Input", this.additionalDescription);
-    console.log("Output after Input", this.img);
 
     this.productName = "";
-    this.fullDescription="";
-    this.shortSpecification="";
-    this.content="";
-    this.additionalDescription="";
-    this.img="";
+    this.fullDescription = "";
+    this.shortSpecification = "";
+    this.content = "";
+    this.additionalDescription = "";
+    this.img = "";
 
     this.visible = false;
   }
@@ -98,38 +102,38 @@ parentSubTypeSelected(selected: ItemSubType) {
   addProduct(): void {
     console.log("addProduct");
 
-  this.service.addProduct(
-    undefined,
-    this.parentType,
-    this.parentSubType,
-    this.productName,
-    this.fullDescription,
-    this.shortSpecification,
-    this.content,
-    this.additionalDescription,
-    this.img).subscribe(
-    response=>{
-        if(response.success == true){
+    this.service.addProduct(
+      undefined,
+      this.parentType,
+      this.parentSubType,
+      this.productName,
+      this.fullDescription,
+      this.shortSpecification,
+      this.content,
+      this.additionalDescription,
+      this.img).subscribe(
+      response => {
+        if (response.success == true) {
+          console.log(response);
+          this.reloadPage();
+        }
         console.log(response);
-        this.reloadPage();
       }
-      console.log(response);
-     }
-  );
-      console.log("add SubType");
+    );
+    console.log("add SubType");
     this.productName = "";
-    this.fullDescription="";
-    this.shortSpecification="";
-    this.content="";
-    this.additionalDescription="";
-    this.img="";
-    }
+    this.fullDescription = "";
+    this.shortSpecification = "";
+    this.content = "";
+    this.additionalDescription = "";
+    this.img = "";
+  }
 
   reloadPage() {
     window.location.reload();
   }
 
   shortSpecChange($event: any) {
-    this.shortSpecification= $event;
+    this.shortSpecification = $event;
   }
 }
