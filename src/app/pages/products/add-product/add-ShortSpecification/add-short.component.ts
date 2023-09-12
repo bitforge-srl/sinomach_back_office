@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ItemShortSpecification} from "../../../../interfaces/type";
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-add-short',
@@ -9,13 +8,15 @@ import {FormControl} from "@angular/forms";
 })
 export class AddShortComponent {
 
-  @Input() shortSpecification: FormControl | undefined;
-
   nameShortSpecification: string = "";
   valueOfShortSpecification: string = "";
 
   shortSpecifications: ItemShortSpecification[] = [];
   itemShortSpecifications: ItemShortSpecification[] = [];
+  shortSpecToString: string = "";
+
+  @Output() changedShortSpecification: EventEmitter<any> = new EventEmitter<any>();
+
 
   addItem() {
     this.itemShortSpecifications.push({
@@ -26,14 +27,26 @@ export class AddShortComponent {
 
     this.nameShortSpecification = "";
     this.valueOfShortSpecification = "";
+
+    console.log("Json", this.translateToString(this.shortSpecifications));
+
+    this.changedShortSpecification.emit(this.translateToString(this.shortSpecifications));
   }
 
   deleteItem(index: number) {
     if (index >= 0 && index < this.shortSpecifications.length) {
       this.shortSpecifications.splice(index, 1);
     }
-    console.log("array", this.shortSpecifications);
-    console.log("sting", this.shortSpecification);
+    this.translateToString(this.shortSpecifications);
+    console.log("Json", this.translateToString(this.shortSpecifications));
+
+    this.changedShortSpecification.emit(this.translateToString(this.shortSpecifications));
 
   }
+
+  translateToString(massive: ItemShortSpecification[]): string {
+    this.shortSpecToString = JSON.stringify(massive);
+    return this.shortSpecToString;
+  }
+
 }

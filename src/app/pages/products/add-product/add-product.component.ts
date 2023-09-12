@@ -128,4 +128,8 @@ parentSubTypeSelected(selected: ItemSubType) {
   reloadPage() {
     window.location.reload();
   }
+
+  shortSpecChange($event: any) {
+    this.shortSpecification= $event;
+  }
 }
