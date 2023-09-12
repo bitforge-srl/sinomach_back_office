@@ -13,11 +13,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of shortSpecifications; let i = index">
-    <td> {{data.name}} </td>
+  <tr *ngFor="let data of shortSpecifications; index as i">
+    <td> {{data.name}}</td>
     <td> {{data.value}} </td>
     <td>
-      <button nz-button nzType="primary" class="removeButton" (click)="deleteItem()">
+      <button nz-button nzType="primary" class="removeButton" (click)="deleteItem(i)">
         <span nz-icon nzType="delete" nzTheme="outline"> </span>
       </button>
     </td>
