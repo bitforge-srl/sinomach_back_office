@@ -13,8 +13,9 @@
         <nz-form-item>
           <nz-form-label>EditType</nz-form-label>
           <nz-form-control>
-            <app-choice-typeForEditProduct
-              (parentTypeSelected)="parentTypeSelected($event)"></app-choice-typeForEditProduct>
+            <app-choice-typeForEditProduct  (parentTypeSelected)="parentTypeSelected($event)"
+            [selectedOption]="startType?.id">
+            </app-choice-typeForEditProduct>
           </nz-form-control>
         </nz-form-item>
 
