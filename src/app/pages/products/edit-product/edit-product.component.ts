@@ -14,6 +14,7 @@ export class EditProductComponent {
   isVisible = false;
 
   type: ItemType | undefined;
+  subType: ItemSubType | undefined;
   productName: string | undefined;
   fullDescription: string | any
   shortSpecification: string | any;
@@ -28,6 +29,8 @@ export class EditProductComponent {
   @Input() parentType: ItemType | undefined
   @Input() parentSubType: ItemSubType | undefined
 
+  @Input() startType: ItemType | undefined
+  @Input() startSubType: ItemSubType | undefined
 
   contentForFullDescription: string = "";
   contentForShortSpecificationProduct: string = "";
@@ -39,8 +42,18 @@ export class EditProductComponent {
   showModal(): void {
     this.isVisible = true;
 
+    console.log("Start Type", this.startType)
+    console.log("Start SubType", this.startSubType)
+
+    // @ts-ignore
+    this.parentTypeSelected(this.startType);
+    // @ts-ignore
+    this.parentSubTypeSelected(this.startSubType);
+
     this.service.getProduct(this.productId).subscribe(
       product => {
+        console.log("-------", product)
+
         this.productName = product.name;
         this.contentForFullDescription = product.fullDescription;
         this.contentForShortSpecificationProduct = product.shortSpecification;

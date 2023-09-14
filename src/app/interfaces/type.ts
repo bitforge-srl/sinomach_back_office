@@ -39,7 +39,7 @@ export interface ItemTypeAndSubType {
 
 export interface ItemProduct {
   id: number,
-  name: String;
+  name: string;
   fullDescription: string,
   shortSpecification: string
   content: string

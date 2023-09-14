@@ -1,9 +1,7 @@
 <nz-select
-      [ngModel]="selectedOption"
-      (ngModelChange)="onOptionSelect($event)"
-      style="width: 200px;"
-    >
-      <nz-option *ngFor="let item of menuItems" [nzValue]="item.value" [nzLabel]="item.name"></nz-option>
-    </nz-select>
-
-
+  [ngModel]="selectedOption"
+  (ngModelChange)="onOptionSelect($event)"
+  style="width: 200px;"
+>
+  <nz-option *ngFor="let item of menuItems" [nzValue]="item.value" [nzLabel]="item.name"></nz-option>
+</nz-select>

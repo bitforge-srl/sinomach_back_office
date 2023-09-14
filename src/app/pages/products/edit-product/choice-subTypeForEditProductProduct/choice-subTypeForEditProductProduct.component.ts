@@ -1,7 +1,7 @@
-import { JsonPipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { AllNameType, ItemSubType, ItemType } from 'src/app/interfaces/type';
-import { RestService } from 'src/app/service/rest.service';
+import {JsonPipe} from '@angular/common';
+import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {AllNameType, ItemSubType, ItemType} from 'src/app/interfaces/type';
+import {RestService} from 'src/app/service/rest.service';
 
 
 @Component({
@@ -12,37 +12,40 @@ import { RestService } from 'src/app/service/rest.service';
 
 export class ChoiceSubTypeForEditProductComponent {
 
-  @Input() parentType!:ItemType;
+  @Input() parentType!: ItemType;
 
   @Output() parentSubTypeSelected = new EventEmitter<ItemSubType>();
 
-  constructor(private service: RestService) { }
+  constructor(private service: RestService) {
+  }
 
-  menuItems:AllNameType[] = [];
+  menuItems: AllNameType[] = [];
 
   dataSubTypeForChoice: ItemSubType[] = [];
 
   selectedOption: number | null = null;
 
-  parentTypeId: number|undefined;
+  parentTypeId: number | undefined;
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
 
-    if ('parentType' in changes){
-      this.menuItems=[];
+    if ('parentType' in changes) {
+      this.menuItems = [];
       const newParentType = changes['parentType'].currentValue;
-      if (newParentType){
+      if (newParentType) {
 
-        this.parentType.subTypes.forEach(subType=>{
-          const item:AllNameType = {
-             name: subType.name,
-                        value: subType.id,
-                       }
+        this.parentType.subTypes.forEach(subType => {
+            const item: AllNameType = {
+              name: subType.name,
+              value: subType.id,
+            }
 
-        this.menuItems.push(item);}
-        )}
-     }
-   }
+            this.menuItems.push(item);
+          }
+        )
+      }
+    }
+  }
 
 
   onOptionSelect(value: number): void {
@@ -52,9 +55,9 @@ export class ChoiceSubTypeForEditProductComponent {
     console.log(this.selectedOption);
 
     const selectedSubType = this.parentType.subTypes.find(subtype => subtype.id === this.selectedOption);
-   if (selectedSubType) {
+    if (selectedSubType) {
       this.parentSubTypeSelected.emit(selectedSubType);
     }
   }
- }
+}
 

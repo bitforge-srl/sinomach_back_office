@@ -14,10 +14,9 @@ export class EditSubTypeComponent {
 
   isVisible = false;
   editedNameSubType: string| any ;
-  editedParentType: string = ""; 
 
   constructor(private service: RestService, private modal: NzModalService) { }
- 
+
   @Input() subtypeId:number | undefined
   @Input() typeId:number | undefined
   @Input() parentType:string | undefined
@@ -26,7 +25,7 @@ export class EditSubTypeComponent {
 
 
   showModal(): void {
-    this.isVisible = true;   
+    this.isVisible = true;
     this.editedNameSubType = this.subType;
     this.selectedTypeId = this.typeId;
   }
@@ -37,7 +36,7 @@ export class EditSubTypeComponent {
 
   handleOk(): void {
     console.log('Button ok clicked!');
-    this.editSubType();      
+    this.editSubType();
     this.isVisible = false;
   }
 
@@ -45,11 +44,11 @@ export class EditSubTypeComponent {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  
-  editSubType(){  
+
+  editSubType(){
     this.service.editSubType(this.subtypeId, this.editedNameSubType, this.selectedTypeId)
     .subscribe(response=>{
-           
+
       if(response.success == true){
         console.log(response);
         this.reloadPage();

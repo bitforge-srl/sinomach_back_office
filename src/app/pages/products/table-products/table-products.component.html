@@ -16,11 +16,14 @@
   <tbody>
   <tr *ngFor="let data of dataOfProducts">
     <td>{{data.name}}</td>
-    <td>{{data.type}}</td>
-    <td>{{data.subType}}</td>
+    <td>{{data.typeName}}</td>
+    <td>{{data.subTypeName}}</td>
 
     <td>
-      <app-editProduct [productId]="data.id"></app-editProduct>
+      <app-editProduct [productId]="data.id"
+                       [startType]="data.type"
+                       [startSubType]="data.subType"
+      ></app-editProduct>
       <app-removeProduct [productId]="data.id"></app-removeProduct>
     </td>
   </tr>

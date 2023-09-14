@@ -31,10 +31,10 @@ export class TableProductsComponent implements OnInit {
             this.itemOfProducts.push({
               id: product.id,
               name: product.name,
-              type: type.name,
-              subType: subType.name,
-              startType: type,
-              startSubType: subType
+              typeName: type.name,
+              subTypeName:subType.name,
+              type: type,
+              subType: subType,
             })
             this.dataOfProducts = this.itemOfProducts;
           });
@@ -47,11 +47,11 @@ export class TableProductsComponent implements OnInit {
 
 interface ItemDataProducts {
   id: number;
-  name: String;
-  type: string;
-  subType: string;
-  startType: ItemType;
-  startSubType: ItemSubType
+  name: string;
+  typeName: string;
+  subTypeName: string;
+  type: ItemType;
+  subType: ItemSubType;
 }
 
 
