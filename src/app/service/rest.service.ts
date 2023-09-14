@@ -13,11 +13,11 @@ export class RestService {
   }
 
   getDataTypes(): Observable<any> {
-    return this.http.get<Observable<any>>('https://cn-sinomach.md/api/type/all');
+    return this.http.get<Observable<any>>('http://localhost:8080/api/type/all');
   }
 
   getDataOfProducts(): Observable<any> {
-    return this.http.get<Observable<any>>('https://cn-sinomach.md/api/product/all');
+    return this.http.get<Observable<any>>('http://localhost:8080/api/product/all');
   }
 
   addNewType(name: string, descriptionType: string, srcBannerOfType: string, srcImageOfType: string): Observable<any> {
@@ -28,23 +28,23 @@ export class RestService {
       "imgBanner": srcBannerOfType
     };
     console.log(addedType);
-    return this.http.post('https://cn-sinomach.md/api/type/add', addedType);
+    return this.http.post('http://localhost:8080/api/type/add', addedType);
   }
 
   deleteType(typeId: number): Observable<any> {
-    const templateUrl = 'https://cn-sinomach.md/api/type/delete/' + typeId;
+    const templateUrl = 'http://localhost:8080/api/type/delete/' + typeId;
     return this.http.delete(templateUrl);
   }
 
   editNameType(typeId: number, name: string): Observable<any> {
     const newNameType = {"name": name};
-    const templateUrl = 'https://cn-sinomach.md/api/type/editNameType/' + typeId;
+    const templateUrl = 'http://localhost:8080/api/type/editNameType/' + typeId;
     return this.http.post(templateUrl, newNameType);
   }
 
   editOrderTypes(dragAndDropItemType: DragAndDropItem[]): Observable<any> {
     const newOrderTypes: DragAndDropItem[] = dragAndDropItemType;
-    const templateUrl = 'https://cn-sinomach.md/api/type/updateOrderTypes'
+    const templateUrl = 'http://localhost:8080/api/type/updateOrderTypes'
     return this.http.post(templateUrl, newOrderTypes);
   }
 
@@ -58,13 +58,13 @@ export class RestService {
       "typeId": parentTypeSelected.id,
       "name": name
     }
-    const templateUrl = 'https://cn-sinomach.md/api/subtype/add';
+    const templateUrl = 'http://localhost:8080/api/subtype/add';
 
     return this.http.post(templateUrl, newSubType);
   }
 
   deleteSubType(subtypeId: number): Observable<any> {
-    const templateUrl = 'https://cn-sinomach.md/api/subtype/delete/' + subtypeId;
+    const templateUrl = 'http://localhost:8080/api/subtype/delete/' + subtypeId;
     return this.http.delete(templateUrl);
   }
 
@@ -78,7 +78,7 @@ export class RestService {
     console.log(subtypeId);
 
     console.log("service editSubtype");
-    const templateUrl = 'https://cn-sinomach.md/api/subtype/edit';
+    const templateUrl = 'http://localhost:8080/api/subtype/edit';
     return this.http.post(templateUrl, dataSubType);
   }
 
@@ -107,12 +107,12 @@ export class RestService {
     console.log(dataProduct);
 
     console.log("service addProduct");
-    const templateUrl = 'https://cn-sinomach.md/api/product/add';
+    const templateUrl = 'http://localhost:8080/api/product/add';
     return this.http.post(templateUrl, dataProduct);
   }
 
   deleteProduct(productId: number): Observable<any> {
-    const templateUrl = 'https://cn-sinomach.md/api/product/delete/' + productId;
+    const templateUrl = 'http://localhost:8080/api/product/delete/' + productId;
     return this.http.delete(templateUrl)
   }
 
@@ -140,12 +140,12 @@ export class RestService {
     console.log(dataProduct);
 
     console.log("service editProduct");
-    const templateUrl = 'https://cn-sinomach.md/api/product/edit';
+    const templateUrl = 'http://localhost:8080/api/product/edit';
     return this.http.post(templateUrl, dataProduct);
   }
 
   getProduct(productId: number): Observable<any> {
-    const templateUrl = 'https://cn-sinomach.md/api/product/' + productId;
+    const templateUrl = 'http://localhost:8080/api/product/' + productId;
 
     return this.http.get(templateUrl);
   }
