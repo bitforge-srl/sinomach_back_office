@@ -24,7 +24,8 @@
           <nz-form-control>
             <app-choice-subTypeForEditProduct
               [parentType]="parentType"
-              (parentSubTypeSelected)="parentSubTypeSelected($event)">
+              (parentSubTypeSelected)="parentSubTypeSelected($event)"
+              [selectedOption]="startSubType?.id">
             </app-choice-subTypeForEditProduct>
           </nz-form-control>
         </nz-form-item>

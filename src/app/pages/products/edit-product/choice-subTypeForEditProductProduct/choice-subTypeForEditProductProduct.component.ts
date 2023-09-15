@@ -13,6 +13,7 @@ import {RestService} from 'src/app/service/rest.service';
 export class ChoiceSubTypeForEditProductComponent {
 
   @Input() parentType!: ItemType;
+  @Input() startSubType: ItemSubType | undefined;
 
   @Output() parentSubTypeSelected = new EventEmitter<ItemSubType>();
 
@@ -21,11 +22,7 @@ export class ChoiceSubTypeForEditProductComponent {
 
   menuItems: AllNameType[] = [];
 
-  dataSubTypeForChoice: ItemSubType[] = [];
-
-  selectedOption: number | null = null;
-
-  parentTypeId: number | undefined;
+  @Input() selectedOption: number | undefined ;
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -39,7 +36,6 @@ export class ChoiceSubTypeForEditProductComponent {
               name: subType.name,
               value: subType.id,
             }
-
             this.menuItems.push(item);
           }
         )
