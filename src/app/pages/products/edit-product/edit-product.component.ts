@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {RestService} from 'src/app/service/rest.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
-import {ItemSubType, ItemType, ItemTypeAndSubType, ItemProduct} from '../../../interfaces/type';
+import {ItemSubType, ItemType, ItemTypeAndSubType, ItemProduct, ItemShortSpecification} from '../../../interfaces/type';
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class EditProductComponent {
   additionalDescription: string | any;
   img: string | any;
 
+
   constructor(private service: RestService, private modal: NzModalService) {
   }
 
@@ -38,6 +40,42 @@ export class EditProductComponent {
   contentForAdditionalDescription: string = "";
   contentForImage: string = "";
 
+  nameShortSpecificationEdit: string = "";
+  valueOfShortSpecificationEdit: string = "";
+
+  shortSpecificationsEdit: ItemShortSpecification[] = [];
+  itemShortSpecificationsForEdit: ItemShortSpecification[] = [];
+  shortSpecToString: string = "";
+  itemShortSpecifications: ItemShortSpecification[] | undefined;
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+    ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 
   showModal(): void {
     this.isVisible = true;
@@ -61,8 +99,19 @@ export class EditProductComponent {
         this.contentForAdditionalDescription = product.additionalDescription;
         this.contentForImage = product.img;
 
-
-        console.log(product)
+        let parse = JSON.parse(this.contentForShortSpecificationProduct);
+        let keys = Object.keys(parse);
+        // @ts-ignore
+        let values:string = Object.values(parse)
+        for (let i = 0; i < keys.length; i++) {
+          this.shortSpecificationsEdit.push(
+            {
+              name: keys[i],
+              value: values[i]
+            }
+          )
+        }
+        console.log(this.shortSpecificationsEdit);
       }
     );
   }
@@ -120,5 +169,33 @@ export class EditProductComponent {
     window.location.reload();
   }
 
+
+  addItem() {
+    // @ts-ignore
+    this.shortSpecificationsEdit.push({
+      name: this.nameShortSpecificationEdit,
+      value: this.valueOfShortSpecificationEdit
+    });
+
+    this.nameShortSpecificationEdit = "";
+    this.valueOfShortSpecificationEdit = "";
+
+    console.log("Json", this.translateToString(this.shortSpecificationsEdit));
+
+  }
+
+  deleteItem(index: number) {
+    if (index >= 0 && index < this.shortSpecificationsEdit.length) {
+      this.shortSpecificationsEdit.splice(index, 1);
+    }
+    this.translateToString(this.shortSpecificationsEdit);
+    console.log("Json", this.translateToString(this.shortSpecificationsEdit));
+
+  }
+
+  translateToString(massive: ItemShortSpecification[]): string {
+    this.shortSpecToString = JSON.stringify(massive);
+    return this.shortSpecToString;
+  }
 }
 

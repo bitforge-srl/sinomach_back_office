@@ -13,8 +13,8 @@
         <nz-form-item>
           <nz-form-label>EditType</nz-form-label>
           <nz-form-control>
-            <app-choice-typeForEditProduct  (parentTypeSelected)="parentTypeSelected($event)"
-            [selectedOption]="startType?.id">
+            <app-choice-typeForEditProduct (parentTypeSelected)="parentTypeSelected($event)"
+                                           [selectedOption]="startType?.id">
             </app-choice-typeForEditProduct>
           </nz-form-control>
         </nz-form-item>
@@ -41,24 +41,61 @@
 
           <nz-collapse-panel [nzHeader]="'FullDescriptionProduct'" [nzActive]="false">
             <angular-editor
-              [(ngModel)]="contentForFullDescription"></angular-editor>
+              [(ngModel)]="contentForFullDescription"
+              [config]="config" name="contentForFullDescription"></angular-editor>
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'ShortSpecificationProduct'" [nzActive]="false">
-            <angular-editor
-              [(ngModel)]="contentForShortSpecificationProduct"></angular-editor>
+            <nz-table #fixedTable [nzData]="shortSpecificationsEdit"
+                      [nzBordered]="true"
+                      [nzVirtualItemSize]="52"
+                      [nzFrontPagination]="false"
+                      [nzShowPagination]="false"
+                      [nzScroll]="{ x: '700x', y: '150px' }">
+
+              <thead>
+              <tr>
+                <th nzLeft nzWidth="50%">Name</th>
+                <th nzWidth="30%">Value</th>
+                <th nzWidth="20%">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of shortSpecificationsEdit; index as i">
+                <td> {{data.name}}</td>
+                <td> {{data.value}} </td>
+                <td>
+                  <button nz-button nzType="primary" class="removeButton" (click)="deleteItem(i)">
+                    <span nz-icon nzType="delete" nzTheme="outline"> </span>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+
+            <div style="display: inline-block;" width="24">
+              <label>Name: </label>
+              <input [(ngModel)]="nameShortSpecificationEdit" name="nameShortSpecificationEdit"/>
+              <label> Value: </label>
+              <input [(ngModel)]="valueOfShortSpecificationEdit" name="valueOfShortSpecificationEdit"/>
+            </div>
+            <button nz-button nzType="primary" (click)="addItem()" class="addButton">+</button>
+
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'ContentProduct'" [nzActive]="false">
-            <angular-editor [(ngModel)]="contentForContentProduct"></angular-editor>
+            <angular-editor [(ngModel)]="contentForContentProduct"
+                            [config]="config" name="contentForContentProduct"></angular-editor>
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'AdditionalDescriptionProduct'" [nzActive]="false">
-            <angular-editor [(ngModel)]="contentForAdditionalDescription"></angular-editor>
+            <angular-editor [(ngModel)]="contentForAdditionalDescription"
+                            [config]="config" name="contentForAdditionalDescription"></angular-editor>
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'ImgProduct'" [nzActive]="false">
-            <angular-editor [(ngModel)]="contentForImage"></angular-editor>
+            <angular-editor [(ngModel)]="contentForImage"
+                            [config]="config" name="contentForImage"></angular-editor>
           </nz-collapse-panel>
 
         </nz-collapse>
