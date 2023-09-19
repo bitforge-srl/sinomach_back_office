@@ -64,7 +64,7 @@ export class AddProductComponent {
 
     this.parentType.subTypes.find(subtype => {
       if (subtype.name === "default") {
-        this.parentSubType=subtype;
+        this.parentSubType = subtype;
       }
     })
     console.log("Default parentSubType:", this.parentSubType);

@@ -150,7 +150,7 @@ export class EditProductComponent {
       this.parentSubType,
       this.productName,
       this.contentForFullDescription,
-      this.contentForShortSpecificationProduct,
+      this.translateToString(this.shortSpecificationsEdit),
       this.contentForContentProduct,
       this.contentForAdditionalDescription,
       this.contentForImage
@@ -179,23 +179,25 @@ export class EditProductComponent {
 
     this.nameShortSpecificationEdit = "";
     this.valueOfShortSpecificationEdit = "";
-
-    console.log("Json", this.translateToString(this.shortSpecificationsEdit));
-
   }
 
   deleteItem(index: number) {
     if (index >= 0 && index < this.shortSpecificationsEdit.length) {
       this.shortSpecificationsEdit.splice(index, 1);
     }
-    this.translateToString(this.shortSpecificationsEdit);
-    console.log("Json", this.translateToString(this.shortSpecificationsEdit));
-
   }
 
   translateToString(massive: ItemShortSpecification[]): string {
-    this.shortSpecToString = JSON.stringify(massive);
-    return this.shortSpecToString;
+    let stringFromMassive = "{";
+    for (let i = 0; i < massive.length; i++) {
+      console.log(massive[i]);
+      stringFromMassive = stringFromMassive + "\"" + massive[i].name + "\":\"" + massive[i].value + "\",";
+    }
+    if (massive.length > 0) {
+      stringFromMassive = stringFromMassive.slice(0, -1) + "}";
+    }
+    console.log(stringFromMassive)
+    return stringFromMassive;
   }
 }
 

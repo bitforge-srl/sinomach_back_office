@@ -28,8 +28,6 @@ export class AddShortComponent {
     this.nameShortSpecification = "";
     this.valueOfShortSpecification = "";
 
-    console.log("Json", this.translateToString(this.shortSpecifications));
-
     this.changedShortSpecification.emit(this.translateToString(this.shortSpecifications));
   }
 
@@ -38,15 +36,20 @@ export class AddShortComponent {
       this.shortSpecifications.splice(index, 1);
     }
     this.translateToString(this.shortSpecifications);
-    console.log("Json", this.translateToString(this.shortSpecifications));
-
     this.changedShortSpecification.emit(this.translateToString(this.shortSpecifications));
 
   }
 
   translateToString(massive: ItemShortSpecification[]): string {
-    this.shortSpecToString = JSON.stringify(massive);
-    return this.shortSpecToString;
+    let stringFromMassive = "{";
+    for (let i = 0; i < massive.length; i++) {
+      console.log(massive[i]);
+      stringFromMassive = stringFromMassive + "\"" + massive[i].name + "\":\"" + massive[i].value + "\",";
+    }
+    if (massive.length > 0) {
+      stringFromMassive = stringFromMassive.slice(0, -1) + "}";
+    }
+    return stringFromMassive;
   }
 
 }
