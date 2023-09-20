@@ -79,10 +79,6 @@ export class EditProductComponent {
 
   showModal(): void {
     this.isVisible = true;
-
-    console.log("Start Type", this.startType)
-    console.log("Start SubType", this.startSubType)
-
     // @ts-ignore
     this.parentTypeSelected(this.startType);
     // @ts-ignore
@@ -90,8 +86,6 @@ export class EditProductComponent {
 
     this.service.getProduct(this.productId).subscribe(
       product => {
-        console.log("-------", product)
-
         this.productName = product.name;
         this.contentForFullDescription = product.fullDescription;
         this.contentForShortSpecificationProduct = product.shortSpecification;
@@ -111,24 +105,20 @@ export class EditProductComponent {
             }
           )
         }
-        console.log(this.shortSpecificationsEdit);
       }
     );
   }
 
   parentTypeSelected(selected: ItemType) {
     this.parentType = selected;
-    console.log("Received parentType", this.parentType);
   }
 
   parentSubTypeSelected(selected: ItemSubType) {
     this.parentSubType = selected;
-    console.log("Received parentSubType:", this.parentSubType);
   }
 
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.editProduct();
     this.isVisible = false;
   }
@@ -139,8 +129,6 @@ export class EditProductComponent {
     this.contentForContentProduct = "";
     this.contentForAdditionalDescription = "";
     this.contentForImage = "";
-
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 

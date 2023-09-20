@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { RestService } from 'src/app/service/rest.service';
-import { ItemType } from '../../../interfaces/type';
+import {Component, Input} from '@angular/core';
+import {RestService} from 'src/app/service/rest.service';
+import {ItemType} from '../../../interfaces/type';
 
 
 @Component({
@@ -16,10 +16,10 @@ export class AddSubTypeComponent {
 
   onParentTypeSelected(selected: ItemType) {
     this.parentType = selected;
-    console.log("Received parentTypeId:", this.parentType);
   }
-   
-  constructor(private service: RestService) { }
+
+  constructor(private service: RestService) {
+  }
 
   visible = false;
 
@@ -31,25 +31,17 @@ export class AddSubTypeComponent {
     this.visible = false;
   }
 
-  
   addSubType(): void {
-    console.log("addSubType");
-    console.log(this.parentType);
-    console.log(this.newSubTypeName);
-
-  this.service.addNewSubType(this.parentType, this.newSubTypeName).subscribe(
-    response=>{
-      
-      if(response.success == true){
+    this.service.addNewSubType(this.parentType, this.newSubTypeName).subscribe(
+      response => {
+        if (response.success == true) {
+          console.log(response);
+          this.reloadPage();
+        }
         console.log(response);
-        this.reloadPage();
       }
-      console.log(response);
-     }
-  );
-  
-      console.log("add SubType");
-    }
+    );
+  }
 
   reloadPage() {
     window.location.reload();

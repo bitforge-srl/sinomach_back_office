@@ -11,10 +11,10 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 
 export class RemoveComponent {
- 
+
   constructor(private service: RestService, private modal: NzModalService) { }
 
-  confirmModal?: NzModalRef; 
+  confirmModal?: NzModalRef;
 
   showConfirm(): void {
     this.confirmModal = this.modal.confirm({
@@ -24,7 +24,7 @@ export class RemoveComponent {
         this.removeType();
         new Promise((resolve, reject) => {
            resolve;
-       
+
         }).catch(
           (error) => {
             console.error(error);
@@ -33,11 +33,10 @@ export class RemoveComponent {
       }
     });
   }
-   
+
   @Input() typeId:number = 0;
- 
-  removeType(){  
-    console.log(this.typeId)
+
+  removeType(){
     this.service.deleteType(this.typeId)
     .subscribe(response=>{
       if(response.success == true){
@@ -53,4 +52,3 @@ export class RemoveComponent {
     window.location.reload();
   }
 }
- 

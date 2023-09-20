@@ -60,20 +60,15 @@ export class AddProductComponent {
 
   parentTypeSelected(selected: ItemType) {
     this.parentType = selected;
-    console.log("Received parentType", this.parentType);
-
     this.parentType.subTypes.find(subtype => {
       if (subtype.name === "default") {
         this.parentSubType = subtype;
       }
     })
-    console.log("Default parentSubType:", this.parentSubType);
-
   }
 
   parentSubTypeSelected(selected: ItemSubType) {
     this.parentSubType = selected;
-    console.log("Received parentSubType:", this.parentSubType);
   }
 
 
