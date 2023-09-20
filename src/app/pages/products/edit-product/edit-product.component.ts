@@ -188,16 +188,11 @@ export class EditProductComponent {
   }
 
   translateToString(massive: ItemShortSpecification[]): string {
-    let stringFromMassive = "{";
-    for (let i = 0; i < massive.length; i++) {
-      console.log(massive[i]);
-      stringFromMassive = stringFromMassive + "\"" + massive[i].name + "\":\"" + massive[i].value + "\",";
-    }
-    if (massive.length > 0) {
-      stringFromMassive = stringFromMassive.slice(0, -1) + "}";
-    }
-    console.log(stringFromMassive)
-    return stringFromMassive;
+    let out: { [key: string]: string } = {};
+    massive.forEach(item => {
+      out[item.name] = item.value;
+    });
+    return JSON.stringify(out);
   }
 }
 
