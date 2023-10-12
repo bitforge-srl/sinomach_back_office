@@ -28,6 +28,7 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {AddShortComponent} from "./add-product/add-ShortSpecification/add-short.component";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzUploadModule} from "ng-zorro-antd/upload";
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     ReactiveFormsModule,
     NzModalModule,
     NzCascaderModule,
-    AngularEditorModule, NzCollapseModule, NzButtonModule
+    AngularEditorModule, NzCollapseModule, NzButtonModule, NzUploadModule
   ],
 
   declarations: [ProductsComponent,

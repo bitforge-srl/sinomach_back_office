@@ -2,6 +2,8 @@ import {Component, Input} from '@angular/core';
 import {RestService} from 'src/app/service/rest.service';
 import {ItemSubType, ItemType} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
 
 
 @Component({
@@ -130,5 +132,32 @@ export class AddProductComponent {
 
   shortSpecChange($event: any) {
     this.shortSpecification = $event;
+  }
+
+
+  handleChange(info: NzUploadChangeParam): void {
+    console.log(info.file.status)
+
+    let imdId;
+    if (info.file.status === 'done') {
+      imdId = info.fileList[0].response.id;
+      console.log("done", imdId);
+    }
+
+    // if (info.file.status !== 'uploading') {
+    //   console.log(info.file, info.fileList);
+    // }
+    // if (info.file.status === 'done') {
+    //   console.log("done", info);
+    // } else if (info.file.status === 'error') {
+    //   console.log("error",info);
+    // }
+  }
+
+  onRemoveFile(file: NzUploadFile): boolean {
+    console.log(file)
+
+    console.log("removeFile")
+    return true;
   }
 }
