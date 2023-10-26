@@ -38,7 +38,7 @@ export class EditProductComponent {
   contentForShortSpecificationProduct: string = "";
   contentForContentProduct: string = "";
   contentForAdditionalDescription: string = "";
-  contentForImage: string = "";
+   contentForImage: string = "";
 
   nameShortSpecificationEdit: string = "";
   valueOfShortSpecificationEdit: string = "";

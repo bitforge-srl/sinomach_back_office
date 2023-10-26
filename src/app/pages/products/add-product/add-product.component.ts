@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {RestService} from 'src/app/service/rest.service';
 import {ItemSubType, ItemType} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
-import {NzMessageService} from "ng-zorro-antd/message";
 import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
 
 
@@ -12,6 +11,10 @@ import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
+
+  constructor(private restService: RestService) {
+    console.log("constructor", restService)
+  }
 
   config: AngularEditorConfig = {
     editable: true,
@@ -41,16 +44,16 @@ export class AddProductComponent {
       },
     ]
   };
-
   parentType!: ItemType;
   parentSubType!: ItemSubType;
-
   productName: string = "";
   fullDescription: string = "";
   shortSpecification: string = "";
   content: string = "";
   additionalDescription: string = "";
   img: string = "";
+
+  imdId: number=0;
 
   collapseStates = {
     fullDescription: false,
@@ -73,10 +76,6 @@ export class AddProductComponent {
     this.parentSubType = selected;
   }
 
-
-  constructor(private service: RestService) {
-  }
-
   visible = false;
 
   open(): void {
@@ -91,6 +90,7 @@ export class AddProductComponent {
     this.content = "";
     this.additionalDescription = "";
     this.img = "";
+    this.imdId = 0;
 
     this.visible = false;
   }
@@ -99,7 +99,7 @@ export class AddProductComponent {
   addProduct(): void {
     console.log("addProduct");
 
-    this.service.addProduct(
+    this.restService.addProduct(
       undefined,
       this.parentType,
       this.parentSubType,
@@ -108,7 +108,8 @@ export class AddProductComponent {
       this.shortSpecification,
       this.content,
       this.additionalDescription,
-      this.img).subscribe(
+      this.img,
+      this.imdId).subscribe(
       response => {
         if (response.success == true) {
           console.log(response);
@@ -117,13 +118,14 @@ export class AddProductComponent {
         console.log(response);
       }
     );
-    console.log("add SubType");
+
     this.productName = "";
     this.fullDescription = "";
     this.shortSpecification = "";
     this.content = "";
     this.additionalDescription = "";
     this.img = "";
+    this.imdId = 0;
   }
 
   reloadPage() {
@@ -137,27 +139,23 @@ export class AddProductComponent {
 
   handleChange(info: NzUploadChangeParam): void {
     console.log(info.file.status)
-
-    let imdId;
     if (info.file.status === 'done') {
-      imdId = info.fileList[0].response.id;
-      console.log("done", imdId);
+      this.imdId = info.fileList[0].response.id;
+      console.log("done", this.imdId);
     }
-
-    // if (info.file.status !== 'uploading') {
-    //   console.log(info.file, info.fileList);
-    // }
-    // if (info.file.status === 'done') {
-    //   console.log("done", info);
-    // } else if (info.file.status === 'error') {
-    //   console.log("error",info);
-    // }
   }
 
-  onRemoveFile(file: NzUploadFile): boolean {
-    console.log(file)
+  onRemoveFile = (file: NzUploadFile)=> {
 
-    console.log("removeFile")
+    console.log("service", this.restService);
+    console.log("file", file);
+    this.imdId= file.response.id;
+    console.log("imageId", this.imdId);
+    this.restService.deleteImageByImgId(this.imdId).subscribe(data => {
+      console.log(data)
+    });
+
+    console.log("removeFile");
     return true;
   }
 }

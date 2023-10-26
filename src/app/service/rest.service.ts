@@ -91,7 +91,8 @@ export class RestService {
     shortSpecification: string | undefined,
     content: string | undefined,
     additionalDescription: string | undefined,
-    img: string | undefined
+    img: string | undefined,
+    imgId: number | undefined
   ): Observable<any> {
     const dataProduct = {
       "productId": productId,
@@ -101,7 +102,8 @@ export class RestService {
       "content": content,
       "additionalDescription": additionalDescription,
       "img": img,
-      "subType": subType
+      "subType": subType,
+      "imgId": imgId
     };
 
     console.log(dataProduct);
@@ -148,6 +150,12 @@ export class RestService {
     const templateUrl = 'http://localhost:8080/api/product/' + productId;
 
     return this.http.get(templateUrl);
+  }
+
+  deleteImageByImgId(imgId: number): Observable<any> {
+    const templateUrl = 'http://localhost:8080/api/image/delete/' + imgId;
+    return this.http.delete(templateUrl);
+
   }
 }
 

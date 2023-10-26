@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RestService } from 'src/app/service/rest.service';
+import {Component} from '@angular/core';
+import {RestService} from 'src/app/service/rest.service';
+import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
 
 
 @Component({
@@ -8,12 +9,14 @@ import { RestService } from 'src/app/service/rest.service';
   styleUrls: ['./add-type.component.css']
 })
 export class AddTypeComponent {
-descriptionType: any;
-addNewType() {
-throw new Error('Method not implemented.');
-}
+  descriptionType: any;
 
-  constructor(private service: RestService) { }
+  addNewType() {
+    throw new Error('Method not implemented.');
+  }
+
+  constructor(private restService: RestService) {
+  }
 
   visible = false;
 
@@ -25,25 +28,49 @@ throw new Error('Method not implemented.');
     this.visible = false;
   }
 
- newTypeName:any;
- srcBannerOfType:any;
- srcImageOfType:any;
+  newTypeName: any;
+  srcBannerOfType: any;
+  srcImageOfType: any;
 
-  
+  imdId = 0;
+
+
   addType(): void {
     console.log(this.newTypeName);
-    this.service.addNewType(this.newTypeName,this.descriptionType,this.srcBannerOfType, this.srcImageOfType)
-      .subscribe(response=>{
-        if(response.success == true){
+    this.restService.addNewType(this.newTypeName, this.descriptionType, this.srcBannerOfType, this.srcImageOfType)
+      .subscribe(response => {
+          if (response.success == true) {
+            console.log(response);
+            this.reloadPage();
+          }
           console.log(response);
-          this.reloadPage();
         }
-        console.log(response);
-       }
-    );
+      );
   }
 
   reloadPage() {
     window.location.reload();
+  }
+
+  handleChange(info: NzUploadChangeParam): void {
+    console.log(info.file.status)
+    if (info.file.status === 'done') {
+      this.imdId = info.fileList[0].response.id;
+      console.log("done", this.imdId);
+    }
+  }
+
+  onRemoveFile = (file: NzUploadFile) => {
+
+    console.log("service", this.restService);
+    console.log("file", file);
+    this.imdId = file.response.id;
+    console.log("imageId", this.imdId);
+    this.restService.deleteImageByImgId(this.imdId).subscribe(data => {
+      console.log(data)
+    });
+
+    console.log("removeFile");
+    return true;
   }
 }
