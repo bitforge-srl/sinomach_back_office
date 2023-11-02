@@ -44,6 +44,7 @@ export interface ItemProduct {
   shortSpecification: string
   content: string
   img: string
+  imgId:number
 }
 
 export interface ItemShortSpecification {

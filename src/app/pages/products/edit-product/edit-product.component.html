@@ -94,8 +94,27 @@
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'ImgProduct'" [nzActive]="false">
-            <angular-editor [(ngModel)]="contentForImage"
-                            [config]="config" name="contentForImage"></angular-editor>
+            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" [ngModel]="imgId" alt="">
+            {{imgId}}
+
+            <div>
+              <nz-form-control>
+
+                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"
+                           [nzListType]="'picture'"
+                           [nzLimit]="1"
+                           [nzFileType]="'image/png,image/jpeg'"
+                           [nzAccept]="'image/png,image/jpeg'"
+                           (nzChange)="handleChange($event)"
+                           [nzRemove]="this.onRemoveFile">
+                  <button nz-button>
+                    <span nz-icon nzType="upload"></span>
+                    Click to Change
+                  </button>
+                </nz-upload>
+
+              </nz-form-control>
+            </div>
           </nz-collapse-panel>
 
         </nz-collapse>

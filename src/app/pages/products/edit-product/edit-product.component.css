@@ -3,5 +3,9 @@
   max-height: 90vh;
   margin-bottom: 20px;
   background: #fff;
+}
 
+img {
+  max-width: 50%;
+  height: auto;
 }

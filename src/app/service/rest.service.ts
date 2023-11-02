@@ -126,7 +126,8 @@ export class RestService {
     shortSpecification: string | undefined,
     content: string | undefined,
     additionalDescription: string | undefined,
-    img: string | undefined
+    img: string | undefined,
+    imgId: number | undefined
   ): Observable<any> {
     const dataProduct = {
       "id": productId,
@@ -136,7 +137,8 @@ export class RestService {
       "shortSpecification": shortSpecification,
       "content": content,
       "additionalDescription": additionalDescription,
-      "img": img
+      "img": img,
+      "imgId": imgId
     };
 
     console.log(dataProduct);

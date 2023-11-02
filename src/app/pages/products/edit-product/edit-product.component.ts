@@ -3,6 +3,7 @@ import {RestService} from 'src/app/service/rest.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {ItemSubType, ItemType, ItemTypeAndSubType, ItemProduct, ItemShortSpecification} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
 
 
 @Component({
@@ -22,9 +23,10 @@ export class EditProductComponent {
   content: string | any;
   additionalDescription: string | any;
   img: string | any;
+  imgId: number| any;
 
 
-  constructor(private service: RestService, private modal: NzModalService) {
+  constructor(private restService: RestService, private modal: NzModalService) {
   }
 
   @Input() productId!: number
@@ -38,15 +40,13 @@ export class EditProductComponent {
   contentForShortSpecificationProduct: string = "";
   contentForContentProduct: string = "";
   contentForAdditionalDescription: string = "";
-   contentForImage: string = "";
+  contentForImage: string = "";
 
   nameShortSpecificationEdit: string = "";
   valueOfShortSpecificationEdit: string = "";
 
   shortSpecificationsEdit: ItemShortSpecification[] = [];
-  itemShortSpecificationsForEdit: ItemShortSpecification[] = [];
-  shortSpecToString: string = "";
-  itemShortSpecifications: ItemShortSpecification[] | undefined;
+  imgIdStart:number |any;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -84,7 +84,7 @@ export class EditProductComponent {
     // @ts-ignore
     this.parentSubTypeSelected(this.startSubType);
 
-    this.service.getProduct(this.productId).subscribe(
+    this.restService.getProduct(this.productId).subscribe(
       product => {
         this.productName = product.name;
         this.contentForFullDescription = product.fullDescription;
@@ -92,11 +92,14 @@ export class EditProductComponent {
         this.contentForContentProduct = product.content;
         this.contentForAdditionalDescription = product.additionalDescription;
         this.contentForImage = product.img;
+        this.imgId= product.imgId;
+
+        this.imgIdStart = product.imgId;
 
         let parse = JSON.parse(this.contentForShortSpecificationProduct);
         let keys = Object.keys(parse);
         // @ts-ignore
-        let values:string = Object.values(parse)
+        let values: string = Object.values(parse)
         for (let i = 0; i < keys.length; i++) {
           this.shortSpecificationsEdit.push(
             {
@@ -117,7 +120,6 @@ export class EditProductComponent {
     this.parentSubType = selected;
   }
 
-
   handleOk(): void {
     this.editProduct();
     this.isVisible = false;
@@ -129,11 +131,13 @@ export class EditProductComponent {
     this.contentForContentProduct = "";
     this.contentForAdditionalDescription = "";
     this.contentForImage = "";
+    this.imgId = 0;
     this.isVisible = false;
   }
 
+
   editProduct() {
-    this.service.editProduct(
+    this.restService.editProduct(
       this.productId,
       this.parentSubType,
       this.productName,
@@ -141,7 +145,8 @@ export class EditProductComponent {
       this.translateToString(this.shortSpecificationsEdit),
       this.contentForContentProduct,
       this.contentForAdditionalDescription,
-      this.contentForImage
+      this.contentForImage,
+      this.imgId
     ).subscribe(response => {
 
         if (response.success == true) {
@@ -156,7 +161,6 @@ export class EditProductComponent {
   reloadPage() {
     window.location.reload();
   }
-
 
   addItem() {
     // @ts-ignore
@@ -181,6 +185,27 @@ export class EditProductComponent {
       out[item.name] = item.value;
     });
     return JSON.stringify(out);
+  }
+  handleChange(info: NzUploadChangeParam): void {
+    console.log(info.file.status)
+    if (info.file.status === 'done') {
+      this.imgId = info.fileList[0].response.id;
+      console.log("done", this.imgId);
+    }
+  }
+  onRemoveFile = (file: NzUploadFile)=> {
+
+    console.log("service", this.restService);
+    console.log("file", file);
+    this.imgId = file.response.id;
+    console.log("imageId", this.imgId);
+    this.restService.deleteImageByImgId(this.imgId).subscribe(data => {
+      console.log(data)
+    });
+    this.imgId = this.imgIdStart;
+
+    console.log("removeFile");
+    return true;
   }
 }
 
