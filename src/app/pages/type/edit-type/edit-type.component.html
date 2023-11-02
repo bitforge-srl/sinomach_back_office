@@ -13,31 +13,67 @@
         <nz-form-item>
           <nz-form-label>Type</nz-form-label>
           <nz-form-control>
-            <input  nz-input [(ngModel)]="editedNameType" [placeholder]="data?.name" class="editType" name="Type">
+            <input nz-input [(ngModel)]="editedNameType" [placeholder]="data?.name" class="editType" name="Type">
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label>descriptionType</nz-form-label>
           <nz-form-control>
-            <input  nz-input [(ngModel)]="editedDescriptionType" [placeholder]="data?.shortDescription" class="editType"
+            <input nz-input [(ngModel)]="editedDescriptionType" [placeholder]="data?.shortDescription" class="editType"
                    name="descriptionType">
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-          <nz-form-label>srcBannerOfType</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="editedSrcBannerType" [placeholder]="data?.imgBanner" class="editType"
-                   name="'srcBannerOfType'">
-          </nz-form-control>
-        </nz-form-item>
+        <!--        <nz-form-item>-->
+        <!--          <nz-form-label>srcBannerOfType</nz-form-label>-->
+        <!--          <nz-form-control>-->
+        <!--            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" [ngModel]="imgId" alt="">-->
+        <!--            {{imgId}}-->
+
+        <!--            <div>-->
+        <!--              <nz-form-control>-->
+
+        <!--                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"-->
+        <!--                           [nzListType]="'picture'"-->
+        <!--                           [nzLimit]="1"-->
+        <!--                           [nzFileType]="'image/png,image/jpeg'"-->
+        <!--                           [nzAccept]="'image/png,image/jpeg'"-->
+        <!--                           (nzChange)="handleChange($event)"-->
+        <!--                           [nzRemove]="this.onRemoveFile">-->
+        <!--                  <button nz-button>-->
+        <!--                    <span nz-icon nzType="upload"></span>-->
+        <!--                    Click to Change-->
+        <!--                  </button>-->
+        <!--                </nz-upload>-->
+
+        <!--              </nz-form-control>-->
+        <!--            </div>-->
+
+        <!--          </nz-form-control>-->
+        <!--        </nz-form-item>-->
 
         <nz-form-item>
-          <nz-form-label>srcImageOfType</nz-form-label>
-          <nz-form-control>
-            <input  nz-input [(ngModel)]="editedSrcImgType" [placeholder]="data?.img" class="editType" name="srcImageOfType">
-          </nz-form-control>
+          <nz-form-label>ImageOfType</nz-form-label>
+            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" alt="">
+            <div>
+              <nz-form-control>
+
+                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"
+                           [nzListType]="'picture'"
+                           [nzLimit]="1"
+                           [nzFileType]="'image/png,image/jpeg'"
+                           [nzAccept]="'image/png,image/jpeg'"
+                           (nzChange)="handleChange($event)"
+                           [nzRemove]="this.onRemoveFile">
+                  <button nz-button>
+                    <span nz-icon nzType="upload"></span>
+                    Click to Change
+                  </button>
+                </nz-upload>
+
+              </nz-form-control>
+            </div>
         </nz-form-item>
 
       </div>

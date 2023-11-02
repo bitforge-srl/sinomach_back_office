@@ -20,12 +20,11 @@ export class RestService {
     return this.http.get<Observable<any>>('http://localhost:8080/api/product/all');
   }
 
-  addNewType(name: string, descriptionType: string, srcBannerOfType: string, srcImageOfType: string): Observable<any> {
+  addNewType(name: string, descriptionType: string, imgId: number): Observable<any> {
     const addedType = {
       "name": name,
       "shortDescription": descriptionType,
-      "img": srcImageOfType,
-      "imgBanner": srcBannerOfType
+      "imgId": imgId
     };
     console.log(addedType);
     return this.http.post('http://localhost:8080/api/type/add', addedType);
@@ -36,10 +35,14 @@ export class RestService {
     return this.http.delete(templateUrl);
   }
 
-  editNameType(typeId: number, name: string): Observable<any> {
-    const newNameType = {"name": name};
-    const templateUrl = 'http://localhost:8080/api/type/editNameType/' + typeId;
-    return this.http.post(templateUrl, newNameType);
+  editType(typeId: number, name: string, description: string, imgId: number): Observable<any> {
+    const newDataType = {
+      "name": name,
+      "shortDescription": description,
+      "imgId": imgId
+    };
+    const templateUrl = 'http://localhost:8080/api/type/editType/' + typeId;
+    return this.http.post(templateUrl, newDataType);
   }
 
   editOrderTypes(dragAndDropItemType: DragAndDropItem[]): Observable<any> {

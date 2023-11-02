@@ -11,9 +11,8 @@ import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
 export class AddTypeComponent {
   descriptionType: any;
 
-  addNewType() {
-    throw new Error('Method not implemented.');
-  }
+  newTypeName: any;
+  imdId = 0;
 
   constructor(private restService: RestService) {
   }
@@ -28,16 +27,10 @@ export class AddTypeComponent {
     this.visible = false;
   }
 
-  newTypeName: any;
-  srcBannerOfType: any;
-  srcImageOfType: any;
-
-  imdId = 0;
-
 
   addType(): void {
     console.log(this.newTypeName);
-    this.restService.addNewType(this.newTypeName, this.descriptionType, this.srcBannerOfType, this.srcImageOfType)
+    this.restService.addNewType(this.newTypeName, this.descriptionType, this.imdId)
       .subscribe(response => {
           if (response.success == true) {
             console.log(response);

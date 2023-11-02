@@ -6,6 +6,7 @@ export interface ItemType {
   img: string;
   subTypes: ItemSubType[];
   order: number;
+  imgId: number;
 }
 
 export interface ItemSubType {
@@ -44,7 +45,7 @@ export interface ItemProduct {
   shortSpecification: string
   content: string
   img: string
-  imgId:number
+  imgId: number
 }
 
 export interface ItemShortSpecification {

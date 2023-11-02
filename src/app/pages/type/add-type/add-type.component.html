@@ -26,23 +26,23 @@
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-          <nz-form-label>Banner</nz-form-label>
-          <nz-form-control>
-            <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"
-                       [nzListType]="'picture'"
-                       [nzLimit]="1"
-                       [nzFileType]="'image/png,image/jpeg'"
-                       [nzAccept]="'image/png,image/jpeg'"
-                       (nzChange)="handleChange($event)"
-                       [nzRemove]="this.onRemoveFile">
-              <button nz-button>
-                <span nz-icon nzType="upload"></span>
-                Click to Upload
-              </button>
-            </nz-upload>
-          </nz-form-control>
-        </nz-form-item>
+<!--        <nz-form-item>-->
+<!--          <nz-form-label>Banner</nz-form-label>-->
+<!--          <nz-form-control>-->
+<!--            <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"-->
+<!--                       [nzListType]="'picture'"-->
+<!--                       [nzLimit]="1"-->
+<!--                       [nzFileType]="'image/png,image/jpeg'"-->
+<!--                       [nzAccept]="'image/png,image/jpeg'"-->
+<!--                       (nzChange)="handleChange($event)"-->
+<!--                       [nzRemove]="this.onRemoveFile">-->
+<!--              <button nz-button>-->
+<!--                <span nz-icon nzType="upload"></span>-->
+<!--                Click to Upload-->
+<!--              </button>-->
+<!--            </nz-upload>-->
+<!--          </nz-form-control>-->
+<!--        </nz-form-item>-->
 
         <nz-form-item>
           <nz-form-label>Image</nz-form-label>

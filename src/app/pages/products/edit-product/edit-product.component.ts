@@ -22,30 +22,24 @@ export class EditProductComponent {
   shortSpecification: string | any;
   content: string | any;
   additionalDescription: string | any;
-  img: string | any;
-  imgId: number| any;
-
-
   constructor(private restService: RestService, private modal: NzModalService) {
   }
 
   @Input() productId!: number
   @Input() parentType: ItemType | undefined
   @Input() parentSubType: ItemSubType | undefined
-
   @Input() startType: ItemType | undefined
   @Input() startSubType: ItemSubType | undefined
-
   contentForFullDescription: string = "";
   contentForShortSpecificationProduct: string = "";
   contentForContentProduct: string = "";
   contentForAdditionalDescription: string = "";
   contentForImage: string = "";
-
   nameShortSpecificationEdit: string = "";
   valueOfShortSpecificationEdit: string = "";
-
   shortSpecificationsEdit: ItemShortSpecification[] = [];
+  img: string | any;
+  imgId: number| any;
   imgIdStart:number |any;
 
   config: AngularEditorConfig = {
