@@ -37,6 +37,7 @@ import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {AddShortComponent} from "./add-product/add-ShortSpecification/add-short.component";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzUploadModule} from "ng-zorro-antd/upload";
+import { LoginComponent } from '../login/login.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {NzUploadModule} from "ng-zorro-antd/upload";
     EditProductComponent,
     ChoiceTypeForEditProductProductComponent,
     ChoiceSubTypeForEditProductComponent,
-    AddShortComponent
+    AddShortComponent,
+    LoginComponent
   ],
   exports: [ProductsComponent]
 })
