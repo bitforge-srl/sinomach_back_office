@@ -20,7 +20,7 @@ export class TableSubTypeComponent implements OnInit {
 
   dataTypes: ItemTypeForSubType[] = [];
   dataTypeAndSubType: ItemTypeAndSubType[] = [];
-
+  dataLoaded: boolean = false;
 
   ngOnInit(): void {
 
@@ -29,15 +29,15 @@ export class TableSubTypeComponent implements OnInit {
       this.dataTypes.forEach(data => {
         data.subTypes.forEach(
           itemSubType => {
-            this.dataTypeAndSubType.push({
+            if (itemSubType.name != "default"){ this.dataTypeAndSubType.push({
               subtypeId: itemSubType.id,
               typeId: data.id,
               nameSubType: itemSubType.name,
               nameParentType: data.name
-            })
+            })}
           })
-
       });
+      this.dataLoaded = true;
     });
   }
 
