@@ -18,6 +18,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTableModule } from '@angular/material/table';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {NzNotificationModule} from "ng-zorro-antd/notification";
 
 
 registerLocaleData(en);
@@ -38,7 +39,8 @@ registerLocaleData(en);
     NzTableModule,
     DragDropModule,
     MatTableModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NzNotificationModule
 
     ],
   providers: [
