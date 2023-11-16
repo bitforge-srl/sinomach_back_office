@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angul
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {NzNotificationService} from "ng-zorro-antd/notification";
+import {environment} from "../../../environments/environment.development";
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,8 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  private userNameCorrect: string = "dan111";
-  private passwordCorrect: string = "0000";
+  private userNameCorrect: string = environment.AdminLogin;
+  private passwordCorrect: string = environment.AdminPassword;
 
   validateForm: FormGroup<{
     userName: FormControl<string>;

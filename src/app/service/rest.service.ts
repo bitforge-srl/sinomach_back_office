@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DragAndDropItem, ItemSubType, ItemType} from '../interfaces/type';
-
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,11 @@ export class RestService {
   }
 
   getDataTypes(): Observable<any> {
-    return this.http.get<Observable<any>>('http://localhost:8080/api/type/all');
+    return this.http.get<Observable<any>>(environment.HOST + 'api/type/all');
   }
 
   getDataOfProducts(): Observable<any> {
-    return this.http.get<Observable<any>>('http://localhost:8080/api/product/all');
+    return this.http.get<Observable<any>>(environment.HOST + 'api/product/all');
   }
 
   addNewType(name: string, descriptionType: string, imgId: number): Observable<any> {
@@ -27,11 +27,11 @@ export class RestService {
       "imgId": imgId
     };
     console.log(addedType);
-    return this.http.post('http://localhost:8080/api/type/add', addedType);
+    return this.http.post(environment.HOST + 'api/type/add', addedType);
   }
 
   deleteType(typeId: number): Observable<any> {
-    const templateUrl = 'http://localhost:8080/api/type/delete/' + typeId;
+    const templateUrl = environment.HOST + 'api/type/delete/' + typeId;
     return this.http.delete(templateUrl);
   }
 
@@ -41,13 +41,13 @@ export class RestService {
       "shortDescription": description,
       "imgId": imgId
     };
-    const templateUrl = 'http://localhost:8080/api/type/editType/' + typeId;
+    const templateUrl = environment.HOST + 'api/type/editType/' + typeId;
     return this.http.post(templateUrl, newDataType);
   }
 
   editOrderTypes(dragAndDropItemType: DragAndDropItem[]): Observable<any> {
     const newOrderTypes: DragAndDropItem[] = dragAndDropItemType;
-    const templateUrl = 'http://localhost:8080/api/type/updateOrderTypes'
+    const templateUrl = environment.HOST + 'api/type/updateOrderTypes'
     return this.http.post(templateUrl, newOrderTypes);
   }
 
@@ -61,13 +61,13 @@ export class RestService {
       "typeId": parentTypeSelected.id,
       "name": name
     }
-    const templateUrl = 'http://localhost:8080/api/subtype/add';
+    const templateUrl = environment.HOST + 'api/subtype/add';
 
     return this.http.post(templateUrl, newSubType);
   }
 
   deleteSubType(subtypeId: number): Observable<any> {
-    const templateUrl = 'http://localhost:8080/api/subtype/delete/' + subtypeId;
+    const templateUrl = environment.HOST + 'api/subtype/delete/' + subtypeId;
     return this.http.delete(templateUrl);
   }
 
@@ -81,7 +81,7 @@ export class RestService {
     console.log(subtypeId);
 
     console.log("service editSubtype");
-    const templateUrl = 'http://localhost:8080/api/subtype/edit';
+    const templateUrl = environment.HOST + 'api/subtype/edit';
     return this.http.post(templateUrl, dataSubType);
   }
 
@@ -112,12 +112,12 @@ export class RestService {
     console.log(dataProduct);
 
     console.log("service addProduct");
-    const templateUrl = 'http://localhost:8080/api/product/add';
+    const templateUrl = environment.HOST + 'api/product/add';
     return this.http.post(templateUrl, dataProduct);
   }
 
   deleteProduct(productId: number): Observable<any> {
-    const templateUrl = 'http://localhost:8080/api/product/delete/' + productId;
+    const templateUrl = environment.HOST + 'api/product/delete/' + productId;
     return this.http.delete(templateUrl)
   }
 
@@ -147,18 +147,18 @@ export class RestService {
     console.log(dataProduct);
 
     console.log("service editProduct");
-    const templateUrl = 'http://localhost:8080/api/product/edit';
+    const templateUrl = environment.HOST + 'api/product/edit';
     return this.http.post(templateUrl, dataProduct);
   }
 
   getProduct(productId: number): Observable<any> {
-    const templateUrl = 'http://localhost:8080/api/product/' + productId;
+    const templateUrl = environment.HOST + 'api/product/' + productId;
 
     return this.http.get(templateUrl);
   }
 
   deleteImageByImgId(imgId: number): Observable<any> {
-    const templateUrl = 'http://localhost:8080/api/image/delete/' + imgId;
+    const templateUrl = environment.HOST + 'api/image/delete/' + imgId;
     return this.http.delete(templateUrl);
 
   }
