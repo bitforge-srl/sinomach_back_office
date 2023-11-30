@@ -25,41 +25,13 @@
           </nz-form-control>
         </nz-form-item>
 
-        <!--        <nz-form-item>-->
-        <!--          <nz-form-label>srcBannerOfType</nz-form-label>-->
-        <!--          <nz-form-control>-->
-        <!--            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" [ngModel]="imgId" alt="">-->
-        <!--            {{imgId}}-->
-
-        <!--            <div>-->
-        <!--              <nz-form-control>-->
-
-        <!--                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"-->
-        <!--                           [nzListType]="'picture'"-->
-        <!--                           [nzLimit]="1"-->
-        <!--                           [nzFileType]="'image/png,image/jpeg'"-->
-        <!--                           [nzAccept]="'image/png,image/jpeg'"-->
-        <!--                           (nzChange)="handleChange($event)"-->
-        <!--                           [nzRemove]="this.onRemoveFile">-->
-        <!--                  <button nz-button>-->
-        <!--                    <span nz-icon nzType="upload"></span>-->
-        <!--                    Click to Change-->
-        <!--                  </button>-->
-        <!--                </nz-upload>-->
-
-        <!--              </nz-form-control>-->
-        <!--            </div>-->
-
-        <!--          </nz-form-control>-->
-        <!--        </nz-form-item>-->
-
         <nz-form-item>
           <nz-form-label>ImageOfType</nz-form-label>
-            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" alt="">
+            <img src="{{nameHost}}api/image/get/{{imgId}}" alt="">
             <div>
               <nz-form-control>
 
-                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"
+                <nz-upload nzAction="{{nameHost}}api/image/upload"
                            [nzListType]="'picture'"
                            [nzLimit]="1"
                            [nzFileType]="'image/png,image/jpeg'"

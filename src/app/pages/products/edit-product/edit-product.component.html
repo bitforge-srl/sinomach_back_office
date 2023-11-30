@@ -94,13 +94,12 @@
           </nz-collapse-panel>
 
           <nz-collapse-panel [nzHeader]="'ImgProduct'" [nzActive]="false">
-            <img src="http://127.0.0.1:8080/api/image/get/{{imgId}}" alt="">
-            {{imgId}}
+            <img src="{{hostName}}api/image/get/{{imgId}}" alt="">
 
             <div>
               <nz-form-control>
 
-                <nz-upload nzAction="http://127.0.0.1:8080/api/image/upload"
+                <nz-upload nzAction="{{hostName}}api/image/upload"
                            [nzListType]="'picture'"
                            [nzLimit]="1"
                            [nzFileType]="'image/png,image/jpeg'"

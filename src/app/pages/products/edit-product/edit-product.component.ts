@@ -4,6 +4,7 @@ import {NzModalService} from 'ng-zorro-antd/modal';
 import {ItemSubType, ItemType, ItemTypeAndSubType, ItemProduct, ItemShortSpecification} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class EditProductComponent {
   shortSpecification: string | any;
   content: string | any;
   additionalDescription: string | any;
+  hostName: string = environment.HOST
   constructor(private restService: RestService, private modal: NzModalService) {
   }
 

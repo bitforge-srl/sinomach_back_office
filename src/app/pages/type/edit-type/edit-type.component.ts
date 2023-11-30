@@ -3,6 +3,7 @@ import {RestService} from 'src/app/service/rest.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {ItemType, DragAndDropItem} from 'src/app/interfaces/type';
 import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -21,6 +22,8 @@ export class EditComponent {
 
   imgId: number | any;
   imgIdStart: number | any;
+
+  nameHost: string = environment.HOST;
 
 
   constructor(private restService: RestService, private modal: NzModalService) {

@@ -3,6 +3,7 @@ import {RestService} from 'src/app/service/rest.service';
 import {ItemSubType, ItemType} from '../../../interfaces/type';
 import {AngularEditorConfig} from "@kolkov/angular-editor";
 import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -11,6 +12,7 @@ import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
+  hostName: string = environment.HOST
 
   constructor(private restService: RestService) {
     console.log("constructor", restService)
@@ -53,7 +55,7 @@ export class AddProductComponent {
   additionalDescription: string = "";
   img: string = "";
 
-  imdId: number=0;
+  imdId: number = 0;
 
   collapseStates = {
     fullDescription: false,
@@ -145,11 +147,11 @@ export class AddProductComponent {
     }
   }
 
-  onRemoveFile = (file: NzUploadFile)=> {
+  onRemoveFile = (file: NzUploadFile) => {
 
     console.log("service", this.restService);
     console.log("file", file);
-    this.imdId= file.response.id;
+    this.imdId = file.response.id;
     console.log("imageId", this.imdId);
     this.restService.deleteImageByImgId(this.imdId).subscribe(data => {
       console.log(data)
